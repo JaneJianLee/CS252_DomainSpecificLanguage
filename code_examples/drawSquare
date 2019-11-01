@@ -1,0 +1,4 @@
+backgroundColor(255, 255, 255)
+canvas(500, 500)
+color(0, 255, 0)
+square(125, 125, 50)
