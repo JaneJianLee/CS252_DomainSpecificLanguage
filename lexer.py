@@ -6,6 +6,8 @@ tokens = ('CANVAS',
          'LBRACE',
          'RBRACE',
          'COMMA',
+         'LINE',
+         'NEWLINE'
          )
 
 def t_NUMBER(t):
@@ -17,6 +19,10 @@ def t_CANVAS(t):
     r'canvas'
     return t
 
+def t_LINE(t):
+    r'line'
+    return t
+    
 def t_LBRACE(t):
     r'\('
     return t
@@ -25,7 +31,7 @@ def t_RBRACE(t):
     r'\)'
     return t
 
-def t_newline(t):
+def t_NEWLINE(t):
     r'\n+'
     return t
 
