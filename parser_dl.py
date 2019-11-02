@@ -24,6 +24,14 @@ def p_expression_line(p):
     'expression : LINE expression expression expression expression'
     w.create_line(p[2],p[3],p[4],p[5])
 
+def p_expression_circle(p):
+    'expression : CIRCLE expression expression expression'
+    x0=p[2]-p[4]
+    x1=p[3]-p[4]
+    y0=p[2]+p[4]
+    y1=p[3]+p[4]
+    w.create_oval(x0,x1,y0,y1,fill="", outline="black", width=4)
+
 def p_expression_oval(p):
     'expression : OVAL expression expression expression expression'
     w.create_oval(p[2],p[3],p[4],p[5])

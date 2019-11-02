@@ -3,6 +3,7 @@ import ply.lex as lex
 tokens = ('CANVAS',
          'NUMBER',
          'LINE',
+         'CIRCLE',
          'OVAL',
          'RECT',
          'WRD',
@@ -22,7 +23,11 @@ def t_NUMBER(t):
 def t_LINE(t):
     r'line'
     return t
-   
+
+def t_CIRCLE(t):
+    r'circle'
+    return t
+
 def t_OVAL(t):
     r'oval'
     return t
