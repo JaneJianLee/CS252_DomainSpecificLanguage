@@ -5,10 +5,21 @@ import ply.yacc as yacc
 from lexer_dl import tokens
 from MyCanvas import MyCanvas, Shape, Color
 
+c = MyCanvas()
+
 def p_expression_canvas(p):
     'expression : CANVAS expression expression'
-    global c
-    c = MyCanvas(width=p[2], height=p[3])
+    c.setCanvasSize(p[2], p[3])
+
+def p_expression_bkgdcolor(p):
+    '''expression : BKGDCOLOR expression
+                  | BKGDCOLOR expression expression expression'''
+    if(len(p) == 3):
+        c.setBkgdColor(p[2])
+    elif(len(p) == 5):
+        c.setBkgdColor([p[2], p[3], p[4]])
+    else:
+        c.setBkgdColor("white")
 
 def p_expression_number(p):
     'expression : NUMBER'

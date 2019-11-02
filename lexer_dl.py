@@ -1,4 +1,5 @@
 import ply.lex as lex
+import sys
 
 tokens = ('CANVAS',
          'NUMBER',
@@ -8,11 +9,16 @@ tokens = ('CANVAS',
          'RECT',
          'WRD',
          'IMG',
-         'TEXT'
+         'TEXT',
+         'BKGDCOLOR'
          )
 
 def t_CANVAS(t):
     r'canvas'
+    return t
+
+def t_BKGDCOLOR(t):
+    r'backgroundColor'
     return t
 
 def t_NUMBER(t):

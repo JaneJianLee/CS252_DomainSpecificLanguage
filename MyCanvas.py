@@ -3,8 +3,19 @@ from tkinter import *
 class MyCanvas:
     def __init__(self, width=0, height=0):
         self.root = Tk()
-        self.w = Canvas(self.root, width=width, height=height)
+        self.bkgdColor = Color(colorStr="white", bColorStr=True)
+        self.w = Canvas(self.root)
         self.shapes = [] #Shape class
+
+    def setCanvasSize(self, width, height):
+        self.w.config(width=width, height=height)
+
+    def setBkgdColor(self, colors):
+        if isinstance(colors, str):
+            c = Color(colorStr=colors, bColorStr=True)
+        else:
+            c = Color(redVal=colors[0], greenVal=colors[1], blueVal=colors[2])
+        self.w.config(background=c.getColor())
 
     def addShape(self, shape):
         self.shapes.append(shape)
