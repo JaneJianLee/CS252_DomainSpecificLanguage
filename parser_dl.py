@@ -6,8 +6,6 @@ from lexer_dl import tokens
 from tkinter import *
 root = Tk()
 w = None
-#w = Canvas(root,width=200,height=400)
-#w.create_line(0,0,200,200)
 
 def p_expression_canvas(p):
     'expression : CANVAS expression expression'
@@ -18,12 +16,33 @@ def p_expression_number(p):
     'expression : NUMBER'
     p[0]=p[1]
 
+def p_expression_word(p):
+    'expression : WRD'
+    p[0]=p[1]
+
 def p_expression_line(p):
     'expression : LINE expression expression expression expression'
     w.create_line(p[2],p[3],p[4],p[5])
+
+def p_expression_oval(p):
+    'expression : OVAL expression expression expression expression'
+    w.create_oval(p[2],p[3],p[4],p[5])
+
+def p_expression_rectangle(p):
+    'expression : RECT expression expression expression expression'
+    w.create_rectangle(p[2],p[3],p[4],p[5])
+
+def p_expression_text(p):    
+    'expression : TEXT expression expression expression'
+    w.create_text(p[2],p[3],fill="black",font="Times 20 italic bold",text=p[4])
+    
+
+def p_expression_image(p):
+    'expression : IMG expression expression expression expression'
+    #w.create_image(position, **options)
     
 def p_error(p):
-    print("please end!")
+    print("Syntax error at '%s'" % p.value)
 
 filename = sys.argv[1]
 parser = yacc.yacc()
@@ -32,9 +51,7 @@ with open(filename, 'r') as fp:
     for line in fp:
         print(line)
         try:
-            print(id(w))
             parser.parse(line)
-            print(id(w))
         except EOFError:
             break
 w.pack()

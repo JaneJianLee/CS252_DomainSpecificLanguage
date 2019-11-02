@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CANVAS LINE NUMBERexpression : CANVAS expression expressionexpression : NUMBERexpression : LINE expression expression expression expression'
+_lr_signature = 'CANVAS IMG LINE NUMBER OVAL RECT TEXT WRDexpression : CANVAS expression expressionexpression : NUMBERexpression : WRDexpression : LINE expression expression expression expressionexpression : OVAL expression expression expression expressionexpression : RECT expression expression expression expressionexpression : TEXT expression expression expressionexpression : IMG expression expression expression expression'
     
-_lr_action_items = {'CANVAS':([0,2,3,4,5,6,7,8,9,10,],[2,2,-2,2,2,2,-1,2,2,-3,]),'NUMBER':([0,2,3,4,5,6,7,8,9,10,],[3,3,-2,3,3,3,-1,3,3,-3,]),'LINE':([0,2,3,4,5,6,7,8,9,10,],[4,4,-2,4,4,4,-1,4,4,-3,]),'$end':([1,3,7,10,],[0,-2,-1,-3,]),}
+_lr_action_items = {'CANVAS':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[2,2,-2,-3,2,2,2,2,2,2,2,2,2,2,2,-1,2,2,2,2,2,2,2,2,-7,2,-4,-5,-6,-8,]),'NUMBER':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[3,3,-2,-3,3,3,3,3,3,3,3,3,3,3,3,-1,3,3,3,3,3,3,3,3,-7,3,-4,-5,-6,-8,]),'WRD':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[4,4,-2,-3,4,4,4,4,4,4,4,4,4,4,4,-1,4,4,4,4,4,4,4,4,-7,4,-4,-5,-6,-8,]),'LINE':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[5,5,-2,-3,5,5,5,5,5,5,5,5,5,5,5,-1,5,5,5,5,5,5,5,5,-7,5,-4,-5,-6,-8,]),'OVAL':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[6,6,-2,-3,6,6,6,6,6,6,6,6,6,6,6,-1,6,6,6,6,6,6,6,6,-7,6,-4,-5,-6,-8,]),'RECT':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[7,7,-2,-3,7,7,7,7,7,7,7,7,7,7,7,-1,7,7,7,7,7,7,7,7,-7,7,-4,-5,-6,-8,]),'TEXT':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[8,8,-2,-3,8,8,8,8,8,8,8,8,8,8,8,-1,8,8,8,8,8,8,8,8,-7,8,-4,-5,-6,-8,]),'IMG':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,],[9,9,-2,-3,9,9,9,9,9,9,9,9,9,9,9,-1,9,9,9,9,9,9,9,9,-7,9,-4,-5,-6,-8,]),'$end':([1,3,4,16,25,27,28,29,30,],[0,-2,-3,-1,-7,-4,-5,-6,-8,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,2,4,5,6,8,9,],[1,5,6,7,8,9,10,]),}
+_lr_goto_items = {'expression':([0,2,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,22,23,24,26,],[1,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,7 +27,12 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> CANVAS expression expression','expression',3,'p_expression_canvas','parser_dl.py',10),
-  ('expression -> NUMBER','expression',1,'p_expression_number','parser_dl.py',15),
-  ('expression -> LINE expression expression expression expression','expression',5,'p_expression_line','parser_dl.py',20),
+  ('expression -> CANVAS expression expression','expression',3,'p_expression_canvas','parser_dl.py',11),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser_dl.py',16),
+  ('expression -> WRD','expression',1,'p_expression_word','parser_dl.py',20),
+  ('expression -> LINE expression expression expression expression','expression',5,'p_expression_line','parser_dl.py',24),
+  ('expression -> OVAL expression expression expression expression','expression',5,'p_expression_oval','parser_dl.py',28),
+  ('expression -> RECT expression expression expression expression','expression',5,'p_expression_rectangle','parser_dl.py',32),
+  ('expression -> TEXT expression expression expression','expression',4,'p_expression_text','parser_dl.py',36),
+  ('expression -> IMG expression expression expression expression','expression',5,'p_expression_image','parser_dl.py',43),
 ]

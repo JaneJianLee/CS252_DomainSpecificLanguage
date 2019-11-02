@@ -1,2 +1,5 @@
-canvas(200,200)
+canvas(500,500)
 line(0,0,200,200)
+oval(0,0,100,200)
+rectangle(0,0,200,200)
+text(300,300,judy)
