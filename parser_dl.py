@@ -31,6 +31,7 @@ def p_expression_word(p):
     'expression : WRD'
     p[0]=p[1]
 
+#TODO: also create expression for outline colors
 def p_expression_color(p):
     """expression : COLOR expression
                   | COLOR expression expression expression"""
