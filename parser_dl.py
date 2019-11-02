@@ -6,6 +6,8 @@ from lexer_dl import tokens
 from MyCanvas import MyCanvas, Shape, Color
 
 c = MyCanvas()
+currentFillColor = Color(colorStr="black", bColorStr=True)
+currentOutlineColor = Color(colorStr="black", bColorStr=True)
 
 def p_expression_canvas(p):
     'expression : CANVAS expression expression'
@@ -29,11 +31,24 @@ def p_expression_word(p):
     'expression : WRD'
     p[0]=p[1]
 
+def p_expression_color(p):
+    """expression : COLOR expression
+                  | COLOR expression expression expression"""
+    global currentFillColor
+    if (len(p) == 3):
+        currentFillColor = Color(colorStr=p[2], bColorStr=True)
+    elif (len(p) == 5):
+        currentFillColor = Color(redVal=p[2], greenVal=p[3], blueVal=p[4])
+    else:
+        currentFillColor = Color(colorStr="black", bColorStr=True)
+
 def p_expression_line(p):
     'expression : LINE expression expression expression expression'
     params = [p[2], p[3], p[4], p[5]]
     s = Shape("line")
     s.setParams(params)
+    s.fillColor = currentFillColor
+    s.color = currentOutlineColor
     c.addShape(s) #add shape to canvas
 
 def p_expression_circle(p):
@@ -46,7 +61,8 @@ def p_expression_circle(p):
     params = [x0, x1, y0, y1]
     s = Shape("circle")
     s.setParams(params)
-    s.color = Color(colorStr="black", bColorStr=True)
+    s.fillColor = currentFillColor
+    s.color = currentOutlineColor
     c.addShape(s)
 
 def p_expression_oval(p):
@@ -54,6 +70,8 @@ def p_expression_oval(p):
     params = [p[2], p[3], p[4], p[5]]
     s = Shape("oval")
     s.setParams(params)
+    s.fillColor = currentFillColor
+    s.color = currentOutlineColor
     c.addShape(s)
 
 def p_expression_rectangle(p):
@@ -61,6 +79,8 @@ def p_expression_rectangle(p):
     params = [p[2], p[3], p[4], p[5]]
     s = Shape("rectangle")
     s.setParams(params)
+    s.fillColor = currentFillColor
+    s.color = currentOutlineColor
     c.addShape(s)
 
 def p_expression_text(p):    
@@ -68,7 +88,8 @@ def p_expression_text(p):
     params = [p[2], p[3], p[4]]
     s = Shape("text")
     s.setParams(params)
-    s.color = Color(colorStr="black", bColorStr=True)
+    s.fillColor = currentFillColor
+    s.color = currentOutlineColor
     c.addShape(s)
 
 
@@ -82,8 +103,10 @@ def p_error(p):
 filename = sys.argv[1]
 parser = yacc.yacc()
 
-with open(filename, 'r') as fp:
+with open(filename) as fp:
     for line in fp:
+        if line is "\n": #hacky solution for skipping the extra newlines :( - Ai-Linh
+            continue
         print(line)
         try:
             parser.parse(line)

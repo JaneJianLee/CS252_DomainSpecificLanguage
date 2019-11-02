@@ -1,4 +1,4 @@
 backgroundColor(255, 255, 255)
 canvas(500, 500)
-color(0, 0, 0)
-line(125, 0, 125, 500, 10)
+color(0, 255, 255)
+line(125, 0, 125, 500)
