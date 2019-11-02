@@ -3,9 +3,19 @@ Authors: Ji An Lee & Ai-Linh Alten
 
 ## Doodle Language:
 
-number = Int
-coord = number number
-radius = number
+<p>NUMBER = Int
+WRD = String
 
-exp ::= canvas number1 number2 // number1 = width, number2 = height
-        | number
+expression ::= canvas expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| BKGDCOLOR expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| BKGDCOLOR expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| COLOR expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| COLOR expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| LINE expression expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| CIRCLE expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| OVAL expression expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| RECT expression expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| TEXT expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| IMG expression expression expression expression  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| NUMBER  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| WRD  
