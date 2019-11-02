@@ -1,6 +1,6 @@
 from tkinter import *
 
-class Canvas:
+class MyCanvas:
     def __init__(self, width=0, height=0):
         self.root = Tk()
         self.w = Canvas(self.root, width=width, height=height)
@@ -15,13 +15,18 @@ class Canvas:
             if s.shapeType == "line":
                 self.w.create_line(*s.params)
             elif s.shapeType == "circle":
-                self.w.create_oval(*s.params)
+                self.w.create_oval(*s.params, fill="", outline=s.color.getColor(), width=4)
             elif s.shapeType == "oval":
                 self.w.create_oval(*s.params)
+            elif s.shapeType == "rectangle":
+                self.w.create_rectangle(*s.params)
             elif s.shapeType == "text":
-                self.w.create_text(*s.params)
+                param = s.params
+                self.w.create_text(param[0], param[1],
+                                      fill=s.color.getColor(), font="Times 20 italic bold", text=param[2])
             else:
                 self.w.create_polygon(*s.params)
+
         self.w.pack()
         mainloop()
 

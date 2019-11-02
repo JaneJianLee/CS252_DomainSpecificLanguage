@@ -3,14 +3,12 @@ import sys
 import pprint
 import ply.yacc as yacc
 from lexer_dl import tokens
-from tkinter import *
-root = Tk()
-w = None
+from MyCanvas import MyCanvas, Shape, Color
 
 def p_expression_canvas(p):
     'expression : CANVAS expression expression'
-    global w
-    w = Canvas(root,width=p[2],height=p[3])
+    global c
+    c = MyCanvas(width=p[2], height=p[3])
 
 def p_expression_number(p):
     'expression : NUMBER'
@@ -22,7 +20,10 @@ def p_expression_word(p):
 
 def p_expression_line(p):
     'expression : LINE expression expression expression expression'
-    w.create_line(p[2],p[3],p[4],p[5])
+    params = [p[2], p[3], p[4], p[5]]
+    s = Shape("line")
+    s.setParams(params)
+    c.addShape(s) #add shape to canvas
 
 def p_expression_circle(p):
     'expression : CIRCLE expression expression expression'
@@ -30,20 +31,35 @@ def p_expression_circle(p):
     x1=p[3]-p[4]
     y0=p[2]+p[4]
     y1=p[3]+p[4]
-    w.create_oval(x0,x1,y0,y1,fill="", outline="black", width=4)
+
+    params = [x0, x1, y0, y1]
+    s = Shape("circle")
+    s.setParams(params)
+    s.color = Color(colorStr="black", bColorStr=True)
+    c.addShape(s)
 
 def p_expression_oval(p):
     'expression : OVAL expression expression expression expression'
-    w.create_oval(p[2],p[3],p[4],p[5])
+    params = [p[2], p[3], p[4], p[5]]
+    s = Shape("oval")
+    s.setParams(params)
+    c.addShape(s)
 
 def p_expression_rectangle(p):
     'expression : RECT expression expression expression expression'
-    w.create_rectangle(p[2],p[3],p[4],p[5])
+    params = [p[2], p[3], p[4], p[5]]
+    s = Shape("rectangle")
+    s.setParams(params)
+    c.addShape(s)
 
 def p_expression_text(p):    
     'expression : TEXT expression expression expression'
-    w.create_text(p[2],p[3],fill="black",font="Times 20 italic bold",text=p[4])
-    
+    params = [p[2], p[3], p[4]]
+    s = Shape("text")
+    s.setParams(params)
+    s.color = Color(colorStr="black", bColorStr=True)
+    c.addShape(s)
+
 
 def p_expression_image(p):
     'expression : IMG expression expression expression expression'
@@ -62,5 +78,5 @@ with open(filename, 'r') as fp:
             parser.parse(line)
         except EOFError:
             break
-w.pack()
-root.mainloop()
+
+c.draw() #canvas drawing shapes in this function
