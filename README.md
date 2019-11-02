@@ -8,3 +8,4 @@ coord = number number
 radius = number
 
 exp ::= canvas number1 number2 // number1 = width, number2 = height
+        | number
