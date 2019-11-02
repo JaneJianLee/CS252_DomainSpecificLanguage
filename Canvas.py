@@ -20,7 +20,7 @@ class Canvas:
                 self.w.create_oval(*s.params)
             elif s.shapeType == "text":
                 self.w.create_text(*s.params)
-            else
+            else:
                 self.w.create_polygon(*s.params)
         self.w.pack()
         mainloop()
