@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CANVAS COMMA LBRACE LINE NEWLINE NUMBER RBRACEexpression : CANVAS LBRACE expression COMMA expression RBRACE NEWLINEexpression : NUMBERexpression : LINE LBRACE expression COMMA expression COMMA expression COMMA expression COMMA expression RBRACE NEWLINE'
+_lr_signature = 'CANVAS LINE NUMBERexpression : CANVAS expression expressionexpression : NUMBERexpression : LINE expression expression expression expression'
     
-_lr_action_items = {'CANVAS':([0,5,6,9,10,14,17,19,],[2,2,2,2,2,2,2,2,]),'NUMBER':([0,5,6,9,10,14,17,19,],[3,3,3,3,3,3,3,3,]),'LINE':([0,5,6,9,10,14,17,19,],[4,4,4,4,4,4,4,4,]),'$end':([1,3,15,22,],[0,-2,-1,-3,]),'LBRACE':([2,4,],[5,6,]),'COMMA':([3,7,8,12,15,16,18,22,],[-2,9,10,14,-1,17,19,-3,]),'RBRACE':([3,11,15,20,22,],[-2,13,-1,21,-3,]),'NEWLINE':([13,21,],[15,22,]),}
+_lr_action_items = {'CANVAS':([0,2,3,4,5,6,7,8,9,10,],[2,2,-2,2,2,2,-1,2,2,-3,]),'NUMBER':([0,2,3,4,5,6,7,8,9,10,],[3,3,-2,3,3,3,-1,3,3,-3,]),'LINE':([0,2,3,4,5,6,7,8,9,10,],[4,4,-2,4,4,4,-1,4,4,-3,]),'$end':([1,3,7,10,],[0,-2,-1,-3,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,5,6,9,10,14,17,19,],[1,7,8,11,12,16,18,20,]),}
+_lr_goto_items = {'expression':([0,2,4,5,6,8,9,],[1,5,6,7,8,9,10,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,7 +27,7 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> CANVAS LBRACE expression COMMA expression RBRACE NEWLINE','expression',7,'p_expression_canvas','parser.py',14),
-  ('expression -> NUMBER','expression',1,'p_expression_number','parser.py',22),
-  ('expression -> LINE LBRACE expression COMMA expression COMMA expression COMMA expression COMMA expression RBRACE NEWLINE','expression',13,'p_expression_line','parser.py',27),
+  ('expression -> CANVAS expression expression','expression',3,'p_expression_canvas','parser_dl.py',10),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser_dl.py',15),
+  ('expression -> LINE expression expression expression expression','expression',5,'p_expression_line','parser_dl.py',20),
 ]

@@ -1,13 +1,8 @@
 import ply.lex as lex
-import re
 
 tokens = ('CANVAS',
          'NUMBER',
-         'LBRACE',
-         'RBRACE',
-         'COMMA',
-         'LINE',
-         'NEWLINE'
+         'LINE'
          )
 
 def t_NUMBER(t):
@@ -25,25 +20,29 @@ def t_LINE(t):
     
 def t_LBRACE(t):
     r'\('
-    return t
-
+    pass
+    
 def t_RBRACE(t):
     r'\)'
-    return t
+    pass
 
 def t_NEWLINE(t):
     r'\n+'
-    return t
+    pass
+
+def t_WHITESPACE(t):
+    r"[\n\t ]"
+    pass
 
 def t_COMMA(t):
     r','
-    return t
-
-def t_error(t):
-    print("Illegal character '{0}' at line {1}".format(t.value[0], t.lineno))
-    t.lexer.skip(1)
+    pass
 
 t_ignore = ' \t'
+    
+def t_error(t):
+	print('Undefined token translation!')
+	sys.exit(1)
 
 lexer = lex.lex()
 
