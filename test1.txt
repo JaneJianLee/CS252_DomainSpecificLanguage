@@ -4,14 +4,18 @@ canvas(500,500)
 color(magenta)
 line(0,0,500,500)
 
+outlineColor(purple)
 color(0, 255, 255)
 oval(250,400,100,200)
 
+outlineColor(purple)
 color(IndianRed4)
 rectangle(0,0,200,200)
 
+outlineColor(black)
 color(black)
 text(300,300,judy)
 
+outlineColor(DeepSkyBlue2)
 color(125, 125, 125)
 circle(100,200,50)
