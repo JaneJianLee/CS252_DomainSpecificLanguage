@@ -99,21 +99,16 @@ def p_expression_text(p):
 
 def p_expression_move(p):
     'expression : MOVE speed direction'
-    print("inside0")
     if p[3] == 'h':
-        print("inside1")
         if p[2] == 'fast':
             xspeed = 10
-            print("inside2")
         elif p[2] == 'slow':    
             xspeed = 5
         while True:
             pos = w.coords(last_obj)
             if pos[0] >= width:
-                print("breaking",pos,width,height)
                 break
             w.move(last_obj,xspeed,0)
-            print("moving",pos,width,height)
             root.update()
             w.pack()
             time.sleep(0.1)
@@ -132,10 +127,6 @@ def p_expression_move(p):
             w.pack()
             time.sleep(0.1)    
 
-def p_expression_image(p):
-    'expression : IMG expression expression expression expression'
-    #w.create_image(position, **options)
-    
 def p_error(p):
     print("Syntax error at '%s'" % p.value)
 

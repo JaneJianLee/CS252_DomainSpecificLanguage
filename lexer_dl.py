@@ -7,7 +7,6 @@ tokens = ('CANVAS',
          'OVAL',
          'RECT',
          'WRD',
-         'IMG',
          'TEXT',
          'QUOT',
          'MOVE'
@@ -48,10 +47,6 @@ def t_TEXT(t):
 
 def t_WRD(t):
     r'\w+'
-    return t
-    
-def t_IMG(t):
-    r'image'
     return t
 
 def t_QUOT(t):
