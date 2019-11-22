@@ -1,0 +1,17 @@
+backgroundColor(bisque)
+canvas(500,500)
+
+color(magenta)
+line(0,0,500,500)
+
+color(0, 255, 255)
+oval(250,400,100,200)
+
+color(IndianRed4)
+rectangle(0,0,200,200)
+
+color(black)
+text(300,300,judy)
+
+color(125, 125, 125)
+circle(100,200,50)

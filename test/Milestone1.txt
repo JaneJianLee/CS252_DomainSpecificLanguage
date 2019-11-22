@@ -1,0 +1,35 @@
+//Doodle Language: Input
+
+backgroundColor(bisque)
+canvas(500,500)
+
+color(magenta)
+line(0,0,500,500)
+
+
+//1. Lexer tokenizes keywords from input
+tokens = ('CANVAS',
+         'NUMBER',
+         'LINE',
+         'CIRCLE',
+         'OVAL',
+         'RECT',
+         'WRD',
+         'IMG',
+         'TEXT',
+         'BKGDCOLOR',
+         'COLOR'
+     )
+//2. Parser matches tokens into expressions and prepares arguments for PLY to visualize.
+def p_expression_line(p):
+    'expression : LINE expression expression expression expression'
+    params = [p[2], p[3], p[4], p[5]]
+    s = Shape("line")
+    s.setParams(params)
+    s.fillColor = currentFillColor
+    s.color = currentOutlineColor
+    c.addShape(s) #add shape to canvas
+    
+//3. Once every input is parsed into PLY arguments, PLY performs visualization.
+
+c.draw()
