@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'CANVAS CIRCLE IMG LINE NUMBER OVAL QUOT RECT TEXT WRDexpression : NUMBERcolor : QUOT WRD QUOTx-coor : NUMBERy-coor : NUMBERradius : NUMBERexpression : CANVAS color expression expressionexpression : LINE x-coor y-coor x-coor y-coorexpression : CIRCLE x-coor y-coor radiusexpression : OVAL x-coor y-coor x-coor y-coorexpression : RECT x-coor y-coor x-coor y-coorexpression : TEXT x-coor y-coor WRDexpression : IMG expression expression expression expression'
+_lr_signature = 'CANVAS CIRCLE IMG LINE NUMBER OVAL QUOT RECT TEXT WRDexpression : NUMBERcolor : QUOT WRD QUOTx-coor : NUMBERy-coor : NUMBERradius : NUMBERexpression : CANVAS expression expression colorexpression : LINE x-coor y-coor x-coor y-coor colorexpression : CIRCLE x-coor y-coor radius colorexpression : OVAL x-coor y-coor x-coor y-coor colorexpression : RECT x-coor y-coor x-coor y-coor colorexpression : TEXT x-coor y-coor WRDexpression : IMG expression expression expression expression'
     
-_lr_action_items = {'NUMBER':([0,2,4,5,6,7,8,9,10,12,13,14,15,16,17,18,19,21,22,23,24,25,27,28,29,30,31,32,33,34,35,36,37,38,39,40,],[2,-1,13,13,13,13,13,2,2,22,-3,22,22,22,22,2,2,13,-4,32,13,13,2,-6,-2,22,-8,-5,22,22,-11,2,-7,-9,-10,-12,]),'CANVAS':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[3,-1,3,3,3,3,-4,3,-6,-2,-8,-5,-11,3,-7,-9,-10,-12,]),'LINE':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[4,-1,4,4,4,4,-4,4,-6,-2,-8,-5,-11,4,-7,-9,-10,-12,]),'CIRCLE':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[5,-1,5,5,5,5,-4,5,-6,-2,-8,-5,-11,5,-7,-9,-10,-12,]),'OVAL':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[6,-1,6,6,6,6,-4,6,-6,-2,-8,-5,-11,6,-7,-9,-10,-12,]),'RECT':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[7,-1,7,7,7,7,-4,7,-6,-2,-8,-5,-11,7,-7,-9,-10,-12,]),'TEXT':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[8,-1,8,8,8,8,-4,8,-6,-2,-8,-5,-11,8,-7,-9,-10,-12,]),'IMG':([0,2,9,10,18,19,22,27,28,29,31,32,35,36,37,38,39,40,],[9,-1,9,9,9,9,-4,9,-6,-2,-8,-5,-11,9,-7,-9,-10,-12,]),'$end':([1,2,22,28,31,32,35,37,38,39,40,],[0,-1,-4,-6,-8,-5,-11,-7,-9,-10,-12,]),'QUOT':([3,20,],[11,29,]),'WRD':([11,22,26,],[20,-4,35,]),}
+_lr_action_items = {'NUMBER':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,19,20,21,22,23,25,26,28,31,32,33,34,37,40,41,42,43,44,],[2,-1,2,12,12,12,12,12,2,2,20,-3,20,20,20,20,2,12,-4,30,12,12,2,-6,20,20,20,-11,2,-8,-12,-2,-7,-9,-10,]),'CANVAS':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[3,-1,3,3,3,3,3,-6,-11,3,-8,-12,-2,-7,-9,-10,]),'LINE':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[4,-1,4,4,4,4,4,-6,-11,4,-8,-12,-2,-7,-9,-10,]),'CIRCLE':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[5,-1,5,5,5,5,5,-6,-11,5,-8,-12,-2,-7,-9,-10,]),'OVAL':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[6,-1,6,6,6,6,6,-6,-11,6,-8,-12,-2,-7,-9,-10,]),'RECT':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[7,-1,7,7,7,7,7,-6,-11,7,-8,-12,-2,-7,-9,-10,]),'TEXT':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[8,-1,8,8,8,8,8,-6,-11,8,-8,-12,-2,-7,-9,-10,]),'IMG':([0,2,3,9,10,17,25,26,33,34,37,40,41,42,43,44,],[9,-1,9,9,9,9,9,-6,-11,9,-8,-12,-2,-7,-9,-10,]),'$end':([1,2,26,33,37,40,41,42,43,44,],[0,-1,-6,-11,-8,-12,-2,-7,-9,-10,]),'QUOT':([2,18,20,26,29,30,33,35,36,37,38,39,40,41,42,43,44,],[-1,27,-4,-6,27,-5,-11,41,27,-8,27,27,-12,-2,-7,-9,-10,]),'WRD':([20,24,27,],[-4,33,35,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,9,10,18,19,27,36,],[1,18,19,27,28,36,40,]),'color':([3,],[10,]),'x-coor':([4,5,6,7,8,21,24,25,],[12,14,15,16,17,30,33,34,]),'y-coor':([12,14,15,16,17,30,33,34,],[21,23,24,25,26,37,38,39,]),'radius':([23,],[31,]),}
+_lr_goto_items = {'expression':([0,3,9,10,17,25,34,],[1,10,17,18,25,34,40,]),'x-coor':([4,5,6,7,8,19,22,23,],[11,13,14,15,16,28,31,32,]),'y-coor':([11,13,14,15,16,28,31,32,],[19,21,22,23,24,36,38,39,]),'color':([18,29,36,38,39,],[26,37,42,43,44,]),'radius':([21,],[29,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -32,11 +32,11 @@ _lr_productions = [
   ('x-coor -> NUMBER','x-coor',1,'p_expression_xcoor','parser_dl.py',19),
   ('y-coor -> NUMBER','y-coor',1,'p_expression_ycoor','parser_dl.py',23),
   ('radius -> NUMBER','radius',1,'p_expression_radius','parser_dl.py',27),
-  ('expression -> CANVAS color expression expression','expression',4,'p_expression_canvas','parser_dl.py',31),
-  ('expression -> LINE x-coor y-coor x-coor y-coor','expression',5,'p_expression_line','parser_dl.py',36),
-  ('expression -> CIRCLE x-coor y-coor radius','expression',4,'p_expression_circle','parser_dl.py',40),
-  ('expression -> OVAL x-coor y-coor x-coor y-coor','expression',5,'p_expression_oval','parser_dl.py',48),
-  ('expression -> RECT x-coor y-coor x-coor y-coor','expression',5,'p_expression_rectangle','parser_dl.py',52),
+  ('expression -> CANVAS expression expression color','expression',4,'p_expression_canvas','parser_dl.py',31),
+  ('expression -> LINE x-coor y-coor x-coor y-coor color','expression',6,'p_expression_line','parser_dl.py',36),
+  ('expression -> CIRCLE x-coor y-coor radius color','expression',5,'p_expression_circle','parser_dl.py',40),
+  ('expression -> OVAL x-coor y-coor x-coor y-coor color','expression',6,'p_expression_oval','parser_dl.py',48),
+  ('expression -> RECT x-coor y-coor x-coor y-coor color','expression',6,'p_expression_rectangle','parser_dl.py',52),
   ('expression -> TEXT x-coor y-coor WRD','expression',4,'p_expression_text','parser_dl.py',56),
   ('expression -> IMG expression expression expression expression','expression',5,'p_expression_image','parser_dl.py',61),
 ]

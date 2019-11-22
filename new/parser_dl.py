@@ -28,29 +28,29 @@ def p_expression_radius(p):
     p[0]=p[1]
     
 def p_expression_canvas(p):
-    'expression : CANVAS color expression expression'
+    'expression : CANVAS expression expression color'
     global w
-    w = Canvas(root, bg=p[2], width=p[3],height=p[4])
+    w = Canvas(root, bg=p[4], width=p[2],height=p[3])
     
 def p_expression_line(p):
-    'expression : LINE x-coor y-coor x-coor y-coor'
+    'expression : LINE x-coor y-coor x-coor y-coor color'
     w.create_line(p[2],p[3],p[4],p[5])
 
 def p_expression_circle(p):
-    'expression : CIRCLE x-coor y-coor radius'
+    'expression : CIRCLE x-coor y-coor radius color'
     x0=p[2]-p[4]
     x1=p[3]-p[4]
     y0=p[2]+p[4]
     y1=p[3]+p[4]
-    w.create_oval(x0,x1,y0,y1,fill="", outline="black", width=4)
+    w.create_oval(x0,x1,y0,y1,fill=p[5], outline="black", width=4)
 
 def p_expression_oval(p):
-    'expression : OVAL x-coor y-coor x-coor y-coor'
-    w.create_oval(p[2],p[3],p[4],p[5])
+    'expression : OVAL x-coor y-coor x-coor y-coor color'
+    w.create_oval(p[2],p[3],p[4],p[5], fill=p[6])
 
 def p_expression_rectangle(p):
-    'expression : RECT x-coor y-coor x-coor y-coor'
-    w.create_rectangle(p[2],p[3],p[4],p[5])
+    'expression : RECT x-coor y-coor x-coor y-coor color'
+    w.create_rectangle(p[2],p[3],p[4],p[5], fill=p[6])
 
 def p_expression_text(p):    
     'expression : TEXT x-coor y-coor WRD'

@@ -8,11 +8,11 @@ Rule 2     color -> QUOT WRD QUOT
 Rule 3     x-coor -> NUMBER
 Rule 4     y-coor -> NUMBER
 Rule 5     radius -> NUMBER
-Rule 6     expression -> CANVAS color expression expression
-Rule 7     expression -> LINE x-coor y-coor x-coor y-coor
-Rule 8     expression -> CIRCLE x-coor y-coor radius
-Rule 9     expression -> OVAL x-coor y-coor x-coor y-coor
-Rule 10    expression -> RECT x-coor y-coor x-coor y-coor
+Rule 6     expression -> CANVAS expression expression color
+Rule 7     expression -> LINE x-coor y-coor x-coor y-coor color
+Rule 8     expression -> CIRCLE x-coor y-coor radius color
+Rule 9     expression -> OVAL x-coor y-coor x-coor y-coor color
+Rule 10    expression -> RECT x-coor y-coor x-coor y-coor color
 Rule 11    expression -> TEXT x-coor y-coor WRD
 Rule 12    expression -> IMG expression expression expression expression
 
@@ -32,7 +32,7 @@ error                :
 
 Nonterminals, with rules where they appear
 
-color                : 6
+color                : 6 7 8 9 10
 expression           : 6 6 12 12 12 12 0
 radius               : 8
 x-coor               : 7 7 8 9 9 10 10 11
@@ -44,11 +44,11 @@ state 0
 
     (0) S' -> . expression
     (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
     (11) expression -> . TEXT x-coor y-coor WRD
     (12) expression -> . IMG expression expression expression expression
 
@@ -82,71 +82,109 @@ state 2
     RECT            reduce using rule 1 (expression -> NUMBER .)
     TEXT            reduce using rule 1 (expression -> NUMBER .)
     IMG             reduce using rule 1 (expression -> NUMBER .)
+    QUOT            reduce using rule 1 (expression -> NUMBER .)
 
 
 state 3
 
-    (6) expression -> CANVAS . color expression expression
-    (2) color -> . QUOT WRD QUOT
+    (6) expression -> CANVAS . expression expression color
+    (1) expression -> . NUMBER
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (11) expression -> . TEXT x-coor y-coor WRD
+    (12) expression -> . IMG expression expression expression expression
 
-    QUOT            shift and go to state 11
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    IMG             shift and go to state 9
 
-    color                          shift and go to state 10
+    expression                     shift and go to state 10
 
 state 4
 
-    (7) expression -> LINE . x-coor y-coor x-coor y-coor
+    (7) expression -> LINE . x-coor y-coor x-coor y-coor color
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 12
 
-    x-coor                         shift and go to state 12
+    x-coor                         shift and go to state 11
 
 state 5
 
-    (8) expression -> CIRCLE . x-coor y-coor radius
+    (8) expression -> CIRCLE . x-coor y-coor radius color
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 12
 
-    x-coor                         shift and go to state 14
+    x-coor                         shift and go to state 13
 
 state 6
 
-    (9) expression -> OVAL . x-coor y-coor x-coor y-coor
+    (9) expression -> OVAL . x-coor y-coor x-coor y-coor color
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 12
 
-    x-coor                         shift and go to state 15
+    x-coor                         shift and go to state 14
 
 state 7
 
-    (10) expression -> RECT . x-coor y-coor x-coor y-coor
+    (10) expression -> RECT . x-coor y-coor x-coor y-coor color
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 12
 
-    x-coor                         shift and go to state 16
+    x-coor                         shift and go to state 15
 
 state 8
 
     (11) expression -> TEXT . x-coor y-coor WRD
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 12
 
-    x-coor                         shift and go to state 17
+    x-coor                         shift and go to state 16
 
 state 9
 
     (12) expression -> IMG . expression expression expression expression
     (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (11) expression -> . TEXT x-coor y-coor WRD
+    (12) expression -> . IMG expression expression expression expression
+
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    IMG             shift and go to state 9
+
+    expression                     shift and go to state 17
+
+state 10
+
+    (6) expression -> CANVAS expression . expression color
+    (1) expression -> . NUMBER
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
     (11) expression -> . TEXT x-coor y-coor WRD
     (12) expression -> . IMG expression expression expression expression
 
@@ -161,97 +199,67 @@ state 9
 
     expression                     shift and go to state 18
 
-state 10
-
-    (6) expression -> CANVAS color . expression expression
-    (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
-    (11) expression -> . TEXT x-coor y-coor WRD
-    (12) expression -> . IMG expression expression expression expression
-
-    NUMBER          shift and go to state 2
-    CANVAS          shift and go to state 3
-    LINE            shift and go to state 4
-    CIRCLE          shift and go to state 5
-    OVAL            shift and go to state 6
-    RECT            shift and go to state 7
-    TEXT            shift and go to state 8
-    IMG             shift and go to state 9
-
-    expression                     shift and go to state 19
-
 state 11
 
-    (2) color -> QUOT . WRD QUOT
-
-    WRD             shift and go to state 20
-
-
-state 12
-
-    (7) expression -> LINE x-coor . y-coor x-coor y-coor
+    (7) expression -> LINE x-coor . y-coor x-coor y-coor color
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 22
+    NUMBER          shift and go to state 20
 
-    y-coor                         shift and go to state 21
+    y-coor                         shift and go to state 19
 
-state 13
+state 12
 
     (3) x-coor -> NUMBER .
 
     NUMBER          reduce using rule 3 (x-coor -> NUMBER .)
 
 
-state 14
+state 13
 
-    (8) expression -> CIRCLE x-coor . y-coor radius
+    (8) expression -> CIRCLE x-coor . y-coor radius color
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 22
+    NUMBER          shift and go to state 20
 
-    y-coor                         shift and go to state 23
+    y-coor                         shift and go to state 21
+
+state 14
+
+    (9) expression -> OVAL x-coor . y-coor x-coor y-coor color
+    (4) y-coor -> . NUMBER
+
+    NUMBER          shift and go to state 20
+
+    y-coor                         shift and go to state 22
 
 state 15
 
-    (9) expression -> OVAL x-coor . y-coor x-coor y-coor
+    (10) expression -> RECT x-coor . y-coor x-coor y-coor color
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 22
+    NUMBER          shift and go to state 20
 
-    y-coor                         shift and go to state 24
+    y-coor                         shift and go to state 23
 
 state 16
-
-    (10) expression -> RECT x-coor . y-coor x-coor y-coor
-    (4) y-coor -> . NUMBER
-
-    NUMBER          shift and go to state 22
-
-    y-coor                         shift and go to state 25
-
-state 17
 
     (11) expression -> TEXT x-coor . y-coor WRD
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 22
+    NUMBER          shift and go to state 20
 
-    y-coor                         shift and go to state 26
+    y-coor                         shift and go to state 24
 
-state 18
+state 17
 
     (12) expression -> IMG expression . expression expression expression
     (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
     (11) expression -> . TEXT x-coor y-coor WRD
     (12) expression -> . IMG expression expression expression expression
 
@@ -264,106 +272,78 @@ state 18
     TEXT            shift and go to state 8
     IMG             shift and go to state 9
 
-    expression                     shift and go to state 27
+    expression                     shift and go to state 25
+
+state 18
+
+    (6) expression -> CANVAS expression expression . color
+    (2) color -> . QUOT WRD QUOT
+
+    QUOT            shift and go to state 27
+
+    color                          shift and go to state 26
 
 state 19
 
-    (6) expression -> CANVAS color expression . expression
-    (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
-    (11) expression -> . TEXT x-coor y-coor WRD
-    (12) expression -> . IMG expression expression expression expression
-
-    NUMBER          shift and go to state 2
-    CANVAS          shift and go to state 3
-    LINE            shift and go to state 4
-    CIRCLE          shift and go to state 5
-    OVAL            shift and go to state 6
-    RECT            shift and go to state 7
-    TEXT            shift and go to state 8
-    IMG             shift and go to state 9
-
-    expression                     shift and go to state 28
-
-state 20
-
-    (2) color -> QUOT WRD . QUOT
-
-    QUOT            shift and go to state 29
-
-
-state 21
-
-    (7) expression -> LINE x-coor y-coor . x-coor y-coor
+    (7) expression -> LINE x-coor y-coor . x-coor y-coor color
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 13
+    NUMBER          shift and go to state 12
 
-    x-coor                         shift and go to state 30
+    x-coor                         shift and go to state 28
 
-state 22
+state 20
 
     (4) y-coor -> NUMBER .
 
     NUMBER          reduce using rule 4 (y-coor -> NUMBER .)
     WRD             reduce using rule 4 (y-coor -> NUMBER .)
-    $end            reduce using rule 4 (y-coor -> NUMBER .)
-    CANVAS          reduce using rule 4 (y-coor -> NUMBER .)
-    LINE            reduce using rule 4 (y-coor -> NUMBER .)
-    CIRCLE          reduce using rule 4 (y-coor -> NUMBER .)
-    OVAL            reduce using rule 4 (y-coor -> NUMBER .)
-    RECT            reduce using rule 4 (y-coor -> NUMBER .)
-    TEXT            reduce using rule 4 (y-coor -> NUMBER .)
-    IMG             reduce using rule 4 (y-coor -> NUMBER .)
+    QUOT            reduce using rule 4 (y-coor -> NUMBER .)
 
+
+state 21
+
+    (8) expression -> CIRCLE x-coor y-coor . radius color
+    (5) radius -> . NUMBER
+
+    NUMBER          shift and go to state 30
+
+    radius                         shift and go to state 29
+
+state 22
+
+    (9) expression -> OVAL x-coor y-coor . x-coor y-coor color
+    (3) x-coor -> . NUMBER
+
+    NUMBER          shift and go to state 12
+
+    x-coor                         shift and go to state 31
 
 state 23
 
-    (8) expression -> CIRCLE x-coor y-coor . radius
-    (5) radius -> . NUMBER
+    (10) expression -> RECT x-coor y-coor . x-coor y-coor color
+    (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 32
+    NUMBER          shift and go to state 12
 
-    radius                         shift and go to state 31
+    x-coor                         shift and go to state 32
 
 state 24
 
-    (9) expression -> OVAL x-coor y-coor . x-coor y-coor
-    (3) x-coor -> . NUMBER
+    (11) expression -> TEXT x-coor y-coor . WRD
 
-    NUMBER          shift and go to state 13
+    WRD             shift and go to state 33
 
-    x-coor                         shift and go to state 33
 
 state 25
 
-    (10) expression -> RECT x-coor y-coor . x-coor y-coor
-    (3) x-coor -> . NUMBER
-
-    NUMBER          shift and go to state 13
-
-    x-coor                         shift and go to state 34
-
-state 26
-
-    (11) expression -> TEXT x-coor y-coor . WRD
-
-    WRD             shift and go to state 35
-
-
-state 27
-
     (12) expression -> IMG expression expression . expression expression
     (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
     (11) expression -> . TEXT x-coor y-coor WRD
     (12) expression -> . IMG expression expression expression expression
 
@@ -376,95 +356,75 @@ state 27
     TEXT            shift and go to state 8
     IMG             shift and go to state 9
 
-    expression                     shift and go to state 36
+    expression                     shift and go to state 34
+
+state 26
+
+    (6) expression -> CANVAS expression expression color .
+
+    $end            reduce using rule 6 (expression -> CANVAS expression expression color .)
+    NUMBER          reduce using rule 6 (expression -> CANVAS expression expression color .)
+    CANVAS          reduce using rule 6 (expression -> CANVAS expression expression color .)
+    LINE            reduce using rule 6 (expression -> CANVAS expression expression color .)
+    CIRCLE          reduce using rule 6 (expression -> CANVAS expression expression color .)
+    OVAL            reduce using rule 6 (expression -> CANVAS expression expression color .)
+    RECT            reduce using rule 6 (expression -> CANVAS expression expression color .)
+    TEXT            reduce using rule 6 (expression -> CANVAS expression expression color .)
+    IMG             reduce using rule 6 (expression -> CANVAS expression expression color .)
+    QUOT            reduce using rule 6 (expression -> CANVAS expression expression color .)
+
+
+state 27
+
+    (2) color -> QUOT . WRD QUOT
+
+    WRD             shift and go to state 35
+
 
 state 28
 
-    (6) expression -> CANVAS color expression expression .
+    (7) expression -> LINE x-coor y-coor x-coor . y-coor color
+    (4) y-coor -> . NUMBER
 
-    $end            reduce using rule 6 (expression -> CANVAS color expression expression .)
-    NUMBER          reduce using rule 6 (expression -> CANVAS color expression expression .)
-    CANVAS          reduce using rule 6 (expression -> CANVAS color expression expression .)
-    LINE            reduce using rule 6 (expression -> CANVAS color expression expression .)
-    CIRCLE          reduce using rule 6 (expression -> CANVAS color expression expression .)
-    OVAL            reduce using rule 6 (expression -> CANVAS color expression expression .)
-    RECT            reduce using rule 6 (expression -> CANVAS color expression expression .)
-    TEXT            reduce using rule 6 (expression -> CANVAS color expression expression .)
-    IMG             reduce using rule 6 (expression -> CANVAS color expression expression .)
+    NUMBER          shift and go to state 20
 
+    y-coor                         shift and go to state 36
 
 state 29
 
-    (2) color -> QUOT WRD QUOT .
+    (8) expression -> CIRCLE x-coor y-coor radius . color
+    (2) color -> . QUOT WRD QUOT
 
-    NUMBER          reduce using rule 2 (color -> QUOT WRD QUOT .)
-    CANVAS          reduce using rule 2 (color -> QUOT WRD QUOT .)
-    LINE            reduce using rule 2 (color -> QUOT WRD QUOT .)
-    CIRCLE          reduce using rule 2 (color -> QUOT WRD QUOT .)
-    OVAL            reduce using rule 2 (color -> QUOT WRD QUOT .)
-    RECT            reduce using rule 2 (color -> QUOT WRD QUOT .)
-    TEXT            reduce using rule 2 (color -> QUOT WRD QUOT .)
-    IMG             reduce using rule 2 (color -> QUOT WRD QUOT .)
+    QUOT            shift and go to state 27
 
+    color                          shift and go to state 37
 
 state 30
 
-    (7) expression -> LINE x-coor y-coor x-coor . y-coor
-    (4) y-coor -> . NUMBER
+    (5) radius -> NUMBER .
 
-    NUMBER          shift and go to state 22
+    QUOT            reduce using rule 5 (radius -> NUMBER .)
 
-    y-coor                         shift and go to state 37
 
 state 31
 
-    (8) expression -> CIRCLE x-coor y-coor radius .
-
-    $end            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    NUMBER          reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    CANVAS          reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    LINE            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    CIRCLE          reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    OVAL            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    RECT            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    TEXT            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-    IMG             reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius .)
-
-
-state 32
-
-    (5) radius -> NUMBER .
-
-    $end            reduce using rule 5 (radius -> NUMBER .)
-    NUMBER          reduce using rule 5 (radius -> NUMBER .)
-    CANVAS          reduce using rule 5 (radius -> NUMBER .)
-    LINE            reduce using rule 5 (radius -> NUMBER .)
-    CIRCLE          reduce using rule 5 (radius -> NUMBER .)
-    OVAL            reduce using rule 5 (radius -> NUMBER .)
-    RECT            reduce using rule 5 (radius -> NUMBER .)
-    TEXT            reduce using rule 5 (radius -> NUMBER .)
-    IMG             reduce using rule 5 (radius -> NUMBER .)
-
-
-state 33
-
-    (9) expression -> OVAL x-coor y-coor x-coor . y-coor
+    (9) expression -> OVAL x-coor y-coor x-coor . y-coor color
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 22
+    NUMBER          shift and go to state 20
 
     y-coor                         shift and go to state 38
 
-state 34
+state 32
 
-    (10) expression -> RECT x-coor y-coor x-coor . y-coor
+    (10) expression -> RECT x-coor y-coor x-coor . y-coor color
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 22
+    NUMBER          shift and go to state 20
 
     y-coor                         shift and go to state 39
 
-state 35
+state 33
 
     (11) expression -> TEXT x-coor y-coor WRD .
 
@@ -477,17 +437,18 @@ state 35
     RECT            reduce using rule 11 (expression -> TEXT x-coor y-coor WRD .)
     TEXT            reduce using rule 11 (expression -> TEXT x-coor y-coor WRD .)
     IMG             reduce using rule 11 (expression -> TEXT x-coor y-coor WRD .)
+    QUOT            reduce using rule 11 (expression -> TEXT x-coor y-coor WRD .)
 
 
-state 36
+state 34
 
     (12) expression -> IMG expression expression expression . expression
     (1) expression -> . NUMBER
-    (6) expression -> . CANVAS color expression expression
-    (7) expression -> . LINE x-coor y-coor x-coor y-coor
-    (8) expression -> . CIRCLE x-coor y-coor radius
-    (9) expression -> . OVAL x-coor y-coor x-coor y-coor
-    (10) expression -> . RECT x-coor y-coor x-coor y-coor
+    (6) expression -> . CANVAS expression expression color
+    (7) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (8) expression -> . CIRCLE x-coor y-coor radius color
+    (9) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (10) expression -> . RECT x-coor y-coor x-coor y-coor color
     (11) expression -> . TEXT x-coor y-coor WRD
     (12) expression -> . IMG expression expression expression expression
 
@@ -502,50 +463,55 @@ state 36
 
     expression                     shift and go to state 40
 
+state 35
+
+    (2) color -> QUOT WRD . QUOT
+
+    QUOT            shift and go to state 41
+
+
+state 36
+
+    (7) expression -> LINE x-coor y-coor x-coor y-coor . color
+    (2) color -> . QUOT WRD QUOT
+
+    QUOT            shift and go to state 27
+
+    color                          shift and go to state 42
+
 state 37
 
-    (7) expression -> LINE x-coor y-coor x-coor y-coor .
+    (8) expression -> CIRCLE x-coor y-coor radius color .
 
-    $end            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    NUMBER          reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    CANVAS          reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    LINE            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    CIRCLE          reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    OVAL            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    RECT            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    TEXT            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    IMG             reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    $end            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    NUMBER          reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    CANVAS          reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    LINE            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    CIRCLE          reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    OVAL            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    RECT            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    TEXT            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    IMG             reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
+    QUOT            reduce using rule 8 (expression -> CIRCLE x-coor y-coor radius color .)
 
 
 state 38
 
-    (9) expression -> OVAL x-coor y-coor x-coor y-coor .
+    (9) expression -> OVAL x-coor y-coor x-coor y-coor . color
+    (2) color -> . QUOT WRD QUOT
 
-    $end            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    NUMBER          reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    CANVAS          reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    LINE            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    CIRCLE          reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    OVAL            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    RECT            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    TEXT            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    IMG             reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    QUOT            shift and go to state 27
 
+    color                          shift and go to state 43
 
 state 39
 
-    (10) expression -> RECT x-coor y-coor x-coor y-coor .
+    (10) expression -> RECT x-coor y-coor x-coor y-coor . color
+    (2) color -> . QUOT WRD QUOT
 
-    $end            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    NUMBER          reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    CANVAS          reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    LINE            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    CIRCLE          reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    OVAL            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    RECT            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    TEXT            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    IMG             reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    QUOT            shift and go to state 27
 
+    color                          shift and go to state 44
 
 state 40
 
@@ -560,4 +526,69 @@ state 40
     RECT            reduce using rule 12 (expression -> IMG expression expression expression expression .)
     TEXT            reduce using rule 12 (expression -> IMG expression expression expression expression .)
     IMG             reduce using rule 12 (expression -> IMG expression expression expression expression .)
+    QUOT            reduce using rule 12 (expression -> IMG expression expression expression expression .)
+
+
+state 41
+
+    (2) color -> QUOT WRD QUOT .
+
+    $end            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    NUMBER          reduce using rule 2 (color -> QUOT WRD QUOT .)
+    CANVAS          reduce using rule 2 (color -> QUOT WRD QUOT .)
+    LINE            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    CIRCLE          reduce using rule 2 (color -> QUOT WRD QUOT .)
+    OVAL            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    RECT            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    TEXT            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    IMG             reduce using rule 2 (color -> QUOT WRD QUOT .)
+    QUOT            reduce using rule 2 (color -> QUOT WRD QUOT .)
+
+
+state 42
+
+    (7) expression -> LINE x-coor y-coor x-coor y-coor color .
+
+    $end            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    NUMBER          reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    CANVAS          reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    LINE            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    CIRCLE          reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    OVAL            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    RECT            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    TEXT            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    IMG             reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    QUOT            reduce using rule 7 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+
+
+state 43
+
+    (9) expression -> OVAL x-coor y-coor x-coor y-coor color .
+
+    $end            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    NUMBER          reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    CANVAS          reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    LINE            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    CIRCLE          reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    OVAL            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    RECT            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    TEXT            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    IMG             reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    QUOT            reduce using rule 9 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+
+
+state 44
+
+    (10) expression -> RECT x-coor y-coor x-coor y-coor color .
+
+    $end            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    NUMBER          reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    CANVAS          reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    LINE            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    CIRCLE          reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    OVAL            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    RECT            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    TEXT            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    IMG             reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    QUOT            reduce using rule 10 (expression -> RECT x-coor y-coor x-coor y-coor color .)
 
