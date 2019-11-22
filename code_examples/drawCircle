@@ -1,4 +1,4 @@
 backgroundColor(255, 255, 255)
 canvas(500, 500)
-color(cyan)
+color(255, 0, 0)
 circle(125, 125, 20)

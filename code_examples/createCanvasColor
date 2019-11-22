@@ -1,2 +1,2 @@
-backgroundColor(255, 255, 0)
+backgroundColor(255, 255, 255)
 canvas(500, 500)

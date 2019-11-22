@@ -1,5 +1,4 @@
 import ply.lex as lex
-import sys
 
 tokens = ('CANVAS',
          'NUMBER',
@@ -10,16 +9,12 @@ tokens = ('CANVAS',
          'WRD',
          'IMG',
          'TEXT',
-         'BKGDCOLOR',
-         'COLOR'
+         'QUOT',
+         'MOVE'
          )
 
 def t_CANVAS(t):
     r'canvas'
-    return t
-
-def t_BKGDCOLOR(t):
-    r'backgroundColor'
     return t
 
 def t_NUMBER(t):
@@ -31,16 +26,16 @@ def t_LINE(t):
     r'line'
     return t
 
-def t_COLOR(t):
-    r'color'
-    return t
-
 def t_CIRCLE(t):
     r'circle'
     return t
 
 def t_OVAL(t):
     r'oval'
+    return t
+
+def t_MOVE(t):
+    r'move'
     return t
 
 def t_RECT(t):
@@ -59,6 +54,10 @@ def t_IMG(t):
     r'image'
     return t
 
+def t_QUOT(t):
+    r'\"'
+    return t
+    
 def t_LBRACE(t):
     r'\('
     pass
@@ -67,31 +66,24 @@ def t_RBRACE(t):
     r'\)'
     pass
 
-#debug the newline
 def t_NEWLINE(t):
     r'\n+'
-    t.lexer.lineno += len(t.value)
-    #pass
+    pass
 
-# user parser_dl.py line 108 to skip the extra lines - Ai-Linh
-# def t_WHITESPACE(t):
-#     r"[\n\t ]"
-#     pass
+def t_WHITESPACE(t):
+    r"[\n\t ]"
+    pass
 
 def t_COMMA(t):
     r','
     pass
 
-def t_QUOT(t):
-    r'\"'
-    pass
 
 t_ignore = ' \t'
     
 def t_error(t):
-	print("Illegal character '%s'" % t.value[0])
-	t.lexer.skip(1)
-	#sys.exit(1)
+	print('Undefined token translation!')
+	sys.exit(1)
 
 lexer = lex.lex()
 

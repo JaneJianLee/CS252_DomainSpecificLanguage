@@ -1,21 +1,12 @@
-backgroundColor(bisque)
-canvas(500,500)
-
-color(magenta)
-line(0,0,500,500)
-
-outlineColor(purple)
-color(0, 255, 255)
-oval(250,400,100,200)
-
-outlineColor(purple)
-color(IndianRed4)
-rectangle(0,0,200,200)
-
-outlineColor(black)
-color(black)
+canvas(500,500,"bisque")
+line(0,0,200,200,"cyan")
+oval(0,100,250,250,"magenta")
+rectangle(0,0,200,200,"green")
+text(300,300,judy)
+circle(100,200,50)
+move(slow,v)
 text(300,300,judy)
 
-outlineColor(DeepSkyBlue2)
-color(125, 125, 125)
-circle(100,200,50)
+#bigger show
+#smaller noshow
+#turn(left, 45)

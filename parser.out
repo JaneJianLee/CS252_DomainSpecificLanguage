@@ -3,69 +3,81 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 Grammar
 
 Rule 0     S' -> expression
-Rule 1     expression -> CANVAS expression expression
-Rule 2     expression -> BKGDCOLOR expression
-Rule 3     expression -> BKGDCOLOR expression expression expression
-Rule 4     expression -> NUMBER
-Rule 5     expression -> WRD
-Rule 6     expression -> COLOR expression
-Rule 7     expression -> COLOR expression expression expression
-Rule 8     expression -> LINE expression expression expression expression
-Rule 9     expression -> CIRCLE expression expression expression
-Rule 10    expression -> OVAL expression expression expression expression
-Rule 11    expression -> RECT expression expression expression expression
-Rule 12    expression -> TEXT expression expression expression
-Rule 13    expression -> IMG expression expression expression expression
+Rule 1     expression -> NUMBER
+Rule 2     color -> QUOT WRD QUOT
+Rule 3     x-coor -> NUMBER
+Rule 4     y-coor -> NUMBER
+Rule 5     radius -> NUMBER
+Rule 6     speed -> WRD
+Rule 7     direction -> WRD
+Rule 8     expression -> CANVAS expression expression color
+Rule 9     expression -> CANVAS expression expression
+Rule 10    expression -> LINE x-coor y-coor x-coor y-coor color
+Rule 11    expression -> LINE x-coor y-coor x-coor y-coor
+Rule 12    expression -> CIRCLE x-coor y-coor radius color
+Rule 13    expression -> CIRCLE x-coor y-coor radius
+Rule 14    expression -> OVAL x-coor y-coor x-coor y-coor color
+Rule 15    expression -> OVAL x-coor y-coor x-coor y-coor
+Rule 16    expression -> RECT x-coor y-coor x-coor y-coor color
+Rule 17    expression -> RECT x-coor y-coor x-coor y-coor
+Rule 18    expression -> TEXT x-coor y-coor WRD
+Rule 19    expression -> MOVE speed direction
+Rule 20    expression -> IMG expression expression expression expression
 
 Terminals, with rules where they appear
 
-BKGDCOLOR            : 2 3
-CANVAS               : 1
-CIRCLE               : 9
-COLOR                : 6 7
-IMG                  : 13
-LINE                 : 8
-NUMBER               : 4
-OVAL                 : 10
-RECT                 : 11
-TEXT                 : 12
-WRD                  : 5
+CANVAS               : 8 9
+CIRCLE               : 12 13
+IMG                  : 20
+LINE                 : 10 11
+MOVE                 : 19
+NUMBER               : 1 3 4 5
+OVAL                 : 14 15
+QUOT                 : 2 2
+RECT                 : 16 17
+TEXT                 : 18
+WRD                  : 2 6 7 18
 error                : 
 
 Nonterminals, with rules where they appear
 
-expression           : 1 1 2 3 3 3 6 7 7 7 8 8 8 8 9 9 9 10 10 10 10 11 11 11 11 12 12 12 13 13 13 13 0
+color                : 8 10 12 14 16
+direction            : 19
+expression           : 8 8 9 9 20 20 20 20 0
+radius               : 12 13
+speed                : 19
+x-coor               : 10 10 11 11 12 13 14 14 15 15 16 16 17 17 18
+y-coor               : 10 10 11 11 12 13 14 14 15 15 16 16 17 17 18
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
     expression                     shift and go to state 1
 
@@ -77,1205 +89,748 @@ state 1
 
 state 2
 
-    (1) expression -> CANVAS . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (1) expression -> NUMBER .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    $end            reduce using rule 1 (expression -> NUMBER .)
+    NUMBER          reduce using rule 1 (expression -> NUMBER .)
+    CANVAS          reduce using rule 1 (expression -> NUMBER .)
+    LINE            reduce using rule 1 (expression -> NUMBER .)
+    CIRCLE          reduce using rule 1 (expression -> NUMBER .)
+    OVAL            reduce using rule 1 (expression -> NUMBER .)
+    RECT            reduce using rule 1 (expression -> NUMBER .)
+    TEXT            reduce using rule 1 (expression -> NUMBER .)
+    MOVE            reduce using rule 1 (expression -> NUMBER .)
+    IMG             reduce using rule 1 (expression -> NUMBER .)
+    QUOT            reduce using rule 1 (expression -> NUMBER .)
 
-    expression                     shift and go to state 13
 
 state 3
 
-    (2) expression -> BKGDCOLOR . expression
-    (3) expression -> BKGDCOLOR . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (8) expression -> CANVAS . expression expression color
+    (9) expression -> CANVAS . expression expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
-    expression                     shift and go to state 14
+    expression                     shift and go to state 11
 
 state 4
 
-    (4) expression -> NUMBER .
+    (10) expression -> LINE . x-coor y-coor x-coor y-coor color
+    (11) expression -> LINE . x-coor y-coor x-coor y-coor
+    (3) x-coor -> . NUMBER
 
-    $end            reduce using rule 4 (expression -> NUMBER .)
-    CANVAS          reduce using rule 4 (expression -> NUMBER .)
-    BKGDCOLOR       reduce using rule 4 (expression -> NUMBER .)
-    NUMBER          reduce using rule 4 (expression -> NUMBER .)
-    WRD             reduce using rule 4 (expression -> NUMBER .)
-    COLOR           reduce using rule 4 (expression -> NUMBER .)
-    LINE            reduce using rule 4 (expression -> NUMBER .)
-    CIRCLE          reduce using rule 4 (expression -> NUMBER .)
-    OVAL            reduce using rule 4 (expression -> NUMBER .)
-    RECT            reduce using rule 4 (expression -> NUMBER .)
-    TEXT            reduce using rule 4 (expression -> NUMBER .)
-    IMG             reduce using rule 4 (expression -> NUMBER .)
+    NUMBER          shift and go to state 13
 
+    x-coor                         shift and go to state 12
 
 state 5
 
-    (5) expression -> WRD .
+    (12) expression -> CIRCLE . x-coor y-coor radius color
+    (13) expression -> CIRCLE . x-coor y-coor radius
+    (3) x-coor -> . NUMBER
 
-    $end            reduce using rule 5 (expression -> WRD .)
-    CANVAS          reduce using rule 5 (expression -> WRD .)
-    BKGDCOLOR       reduce using rule 5 (expression -> WRD .)
-    NUMBER          reduce using rule 5 (expression -> WRD .)
-    WRD             reduce using rule 5 (expression -> WRD .)
-    COLOR           reduce using rule 5 (expression -> WRD .)
-    LINE            reduce using rule 5 (expression -> WRD .)
-    CIRCLE          reduce using rule 5 (expression -> WRD .)
-    OVAL            reduce using rule 5 (expression -> WRD .)
-    RECT            reduce using rule 5 (expression -> WRD .)
-    TEXT            reduce using rule 5 (expression -> WRD .)
-    IMG             reduce using rule 5 (expression -> WRD .)
+    NUMBER          shift and go to state 13
 
+    x-coor                         shift and go to state 14
 
 state 6
 
-    (6) expression -> COLOR . expression
-    (7) expression -> COLOR . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (14) expression -> OVAL . x-coor y-coor x-coor y-coor color
+    (15) expression -> OVAL . x-coor y-coor x-coor y-coor
+    (3) x-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 13
 
-    expression                     shift and go to state 15
+    x-coor                         shift and go to state 15
 
 state 7
 
-    (8) expression -> LINE . expression expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (16) expression -> RECT . x-coor y-coor x-coor y-coor color
+    (17) expression -> RECT . x-coor y-coor x-coor y-coor
+    (3) x-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 13
 
-    expression                     shift and go to state 16
+    x-coor                         shift and go to state 16
 
 state 8
 
-    (9) expression -> CIRCLE . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (18) expression -> TEXT . x-coor y-coor WRD
+    (3) x-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 13
 
-    expression                     shift and go to state 17
+    x-coor                         shift and go to state 17
 
 state 9
 
-    (10) expression -> OVAL . expression expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (19) expression -> MOVE . speed direction
+    (6) speed -> . WRD
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    WRD             shift and go to state 19
 
-    expression                     shift and go to state 18
+    speed                          shift and go to state 18
 
 state 10
 
-    (11) expression -> RECT . expression expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (20) expression -> IMG . expression expression expression expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
-
-    expression                     shift and go to state 19
-
-state 11
-
-    (12) expression -> TEXT . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
-
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
     expression                     shift and go to state 20
 
-state 12
+state 11
 
-    (13) expression -> IMG . expression expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (8) expression -> CANVAS expression . expression color
+    (9) expression -> CANVAS expression . expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
     expression                     shift and go to state 21
 
+state 12
+
+    (10) expression -> LINE x-coor . y-coor x-coor y-coor color
+    (11) expression -> LINE x-coor . y-coor x-coor y-coor
+    (4) y-coor -> . NUMBER
+
+    NUMBER          shift and go to state 23
+
+    y-coor                         shift and go to state 22
+
 state 13
 
-    (1) expression -> CANVAS expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (3) x-coor -> NUMBER .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          reduce using rule 3 (x-coor -> NUMBER .)
 
-    expression                     shift and go to state 22
 
 state 14
 
-    (2) expression -> BKGDCOLOR expression .
-    (3) expression -> BKGDCOLOR expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (12) expression -> CIRCLE x-coor . y-coor radius color
+    (13) expression -> CIRCLE x-coor . y-coor radius
+    (4) y-coor -> . NUMBER
 
-  ! shift/reduce conflict for CANVAS resolved as shift
-  ! shift/reduce conflict for BKGDCOLOR resolved as shift
-  ! shift/reduce conflict for NUMBER resolved as shift
-  ! shift/reduce conflict for WRD resolved as shift
-  ! shift/reduce conflict for COLOR resolved as shift
-  ! shift/reduce conflict for LINE resolved as shift
-  ! shift/reduce conflict for CIRCLE resolved as shift
-  ! shift/reduce conflict for OVAL resolved as shift
-  ! shift/reduce conflict for RECT resolved as shift
-  ! shift/reduce conflict for TEXT resolved as shift
-  ! shift/reduce conflict for IMG resolved as shift
-    $end            reduce using rule 2 (expression -> BKGDCOLOR expression .)
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 23
 
-  ! CANVAS          [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! BKGDCOLOR       [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! NUMBER          [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! WRD             [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! COLOR           [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! LINE            [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! CIRCLE          [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! OVAL            [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! RECT            [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! TEXT            [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-  ! IMG             [ reduce using rule 2 (expression -> BKGDCOLOR expression .) ]
-
-    expression                     shift and go to state 23
+    y-coor                         shift and go to state 24
 
 state 15
 
-    (6) expression -> COLOR expression .
-    (7) expression -> COLOR expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (14) expression -> OVAL x-coor . y-coor x-coor y-coor color
+    (15) expression -> OVAL x-coor . y-coor x-coor y-coor
+    (4) y-coor -> . NUMBER
 
-  ! shift/reduce conflict for CANVAS resolved as shift
-  ! shift/reduce conflict for BKGDCOLOR resolved as shift
-  ! shift/reduce conflict for NUMBER resolved as shift
-  ! shift/reduce conflict for WRD resolved as shift
-  ! shift/reduce conflict for COLOR resolved as shift
-  ! shift/reduce conflict for LINE resolved as shift
-  ! shift/reduce conflict for CIRCLE resolved as shift
-  ! shift/reduce conflict for OVAL resolved as shift
-  ! shift/reduce conflict for RECT resolved as shift
-  ! shift/reduce conflict for TEXT resolved as shift
-  ! shift/reduce conflict for IMG resolved as shift
-    $end            reduce using rule 6 (expression -> COLOR expression .)
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 23
 
-  ! CANVAS          [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! BKGDCOLOR       [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! NUMBER          [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! WRD             [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! COLOR           [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! LINE            [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! CIRCLE          [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! OVAL            [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! RECT            [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! TEXT            [ reduce using rule 6 (expression -> COLOR expression .) ]
-  ! IMG             [ reduce using rule 6 (expression -> COLOR expression .) ]
-
-    expression                     shift and go to state 24
+    y-coor                         shift and go to state 25
 
 state 16
 
-    (8) expression -> LINE expression . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (16) expression -> RECT x-coor . y-coor x-coor y-coor color
+    (17) expression -> RECT x-coor . y-coor x-coor y-coor
+    (4) y-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 23
 
-    expression                     shift and go to state 25
+    y-coor                         shift and go to state 26
 
 state 17
 
-    (9) expression -> CIRCLE expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (18) expression -> TEXT x-coor . y-coor WRD
+    (4) y-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 23
 
-    expression                     shift and go to state 26
+    y-coor                         shift and go to state 27
 
 state 18
 
-    (10) expression -> OVAL expression . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (19) expression -> MOVE speed . direction
+    (7) direction -> . WRD
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    WRD             shift and go to state 29
 
-    expression                     shift and go to state 27
+    direction                      shift and go to state 28
 
 state 19
 
-    (11) expression -> RECT expression . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (6) speed -> WRD .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    WRD             reduce using rule 6 (speed -> WRD .)
 
-    expression                     shift and go to state 28
 
 state 20
 
-    (12) expression -> TEXT expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (20) expression -> IMG expression . expression expression expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
-
-    expression                     shift and go to state 29
-
-state 21
-
-    (13) expression -> IMG expression . expression expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
-
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
     expression                     shift and go to state 30
 
+state 21
+
+    (8) expression -> CANVAS expression expression . color
+    (9) expression -> CANVAS expression expression .
+    (2) color -> . QUOT WRD QUOT
+
+  ! shift/reduce conflict for QUOT resolved as shift
+    $end            reduce using rule 9 (expression -> CANVAS expression expression .)
+    NUMBER          reduce using rule 9 (expression -> CANVAS expression expression .)
+    CANVAS          reduce using rule 9 (expression -> CANVAS expression expression .)
+    LINE            reduce using rule 9 (expression -> CANVAS expression expression .)
+    CIRCLE          reduce using rule 9 (expression -> CANVAS expression expression .)
+    OVAL            reduce using rule 9 (expression -> CANVAS expression expression .)
+    RECT            reduce using rule 9 (expression -> CANVAS expression expression .)
+    TEXT            reduce using rule 9 (expression -> CANVAS expression expression .)
+    MOVE            reduce using rule 9 (expression -> CANVAS expression expression .)
+    IMG             reduce using rule 9 (expression -> CANVAS expression expression .)
+    QUOT            shift and go to state 32
+
+  ! QUOT            [ reduce using rule 9 (expression -> CANVAS expression expression .) ]
+
+    color                          shift and go to state 31
+
 state 22
 
-    (1) expression -> CANVAS expression expression .
+    (10) expression -> LINE x-coor y-coor . x-coor y-coor color
+    (11) expression -> LINE x-coor y-coor . x-coor y-coor
+    (3) x-coor -> . NUMBER
 
-    $end            reduce using rule 1 (expression -> CANVAS expression expression .)
-    CANVAS          reduce using rule 1 (expression -> CANVAS expression expression .)
-    BKGDCOLOR       reduce using rule 1 (expression -> CANVAS expression expression .)
-    NUMBER          reduce using rule 1 (expression -> CANVAS expression expression .)
-    WRD             reduce using rule 1 (expression -> CANVAS expression expression .)
-    COLOR           reduce using rule 1 (expression -> CANVAS expression expression .)
-    LINE            reduce using rule 1 (expression -> CANVAS expression expression .)
-    CIRCLE          reduce using rule 1 (expression -> CANVAS expression expression .)
-    OVAL            reduce using rule 1 (expression -> CANVAS expression expression .)
-    RECT            reduce using rule 1 (expression -> CANVAS expression expression .)
-    TEXT            reduce using rule 1 (expression -> CANVAS expression expression .)
-    IMG             reduce using rule 1 (expression -> CANVAS expression expression .)
+    NUMBER          shift and go to state 13
 
+    x-coor                         shift and go to state 33
 
 state 23
 
-    (3) expression -> BKGDCOLOR expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (4) y-coor -> NUMBER .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          reduce using rule 4 (y-coor -> NUMBER .)
+    WRD             reduce using rule 4 (y-coor -> NUMBER .)
+    QUOT            reduce using rule 4 (y-coor -> NUMBER .)
+    $end            reduce using rule 4 (y-coor -> NUMBER .)
+    CANVAS          reduce using rule 4 (y-coor -> NUMBER .)
+    LINE            reduce using rule 4 (y-coor -> NUMBER .)
+    CIRCLE          reduce using rule 4 (y-coor -> NUMBER .)
+    OVAL            reduce using rule 4 (y-coor -> NUMBER .)
+    RECT            reduce using rule 4 (y-coor -> NUMBER .)
+    TEXT            reduce using rule 4 (y-coor -> NUMBER .)
+    MOVE            reduce using rule 4 (y-coor -> NUMBER .)
+    IMG             reduce using rule 4 (y-coor -> NUMBER .)
 
-    expression                     shift and go to state 31
 
 state 24
 
-    (7) expression -> COLOR expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (12) expression -> CIRCLE x-coor y-coor . radius color
+    (13) expression -> CIRCLE x-coor y-coor . radius
+    (5) radius -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 35
 
-    expression                     shift and go to state 32
+    radius                         shift and go to state 34
 
 state 25
 
-    (8) expression -> LINE expression expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (14) expression -> OVAL x-coor y-coor . x-coor y-coor color
+    (15) expression -> OVAL x-coor y-coor . x-coor y-coor
+    (3) x-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 13
 
-    expression                     shift and go to state 33
+    x-coor                         shift and go to state 36
 
 state 26
 
-    (9) expression -> CIRCLE expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (16) expression -> RECT x-coor y-coor . x-coor y-coor color
+    (17) expression -> RECT x-coor y-coor . x-coor y-coor
+    (3) x-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 13
 
-    expression                     shift and go to state 34
+    x-coor                         shift and go to state 37
 
 state 27
 
-    (10) expression -> OVAL expression expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (18) expression -> TEXT x-coor y-coor . WRD
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    WRD             shift and go to state 38
 
-    expression                     shift and go to state 35
 
 state 28
 
-    (11) expression -> RECT expression expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (19) expression -> MOVE speed direction .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    $end            reduce using rule 19 (expression -> MOVE speed direction .)
+    NUMBER          reduce using rule 19 (expression -> MOVE speed direction .)
+    CANVAS          reduce using rule 19 (expression -> MOVE speed direction .)
+    LINE            reduce using rule 19 (expression -> MOVE speed direction .)
+    CIRCLE          reduce using rule 19 (expression -> MOVE speed direction .)
+    OVAL            reduce using rule 19 (expression -> MOVE speed direction .)
+    RECT            reduce using rule 19 (expression -> MOVE speed direction .)
+    TEXT            reduce using rule 19 (expression -> MOVE speed direction .)
+    MOVE            reduce using rule 19 (expression -> MOVE speed direction .)
+    IMG             reduce using rule 19 (expression -> MOVE speed direction .)
+    QUOT            reduce using rule 19 (expression -> MOVE speed direction .)
 
-    expression                     shift and go to state 36
 
 state 29
 
-    (12) expression -> TEXT expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (7) direction -> WRD .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    $end            reduce using rule 7 (direction -> WRD .)
+    NUMBER          reduce using rule 7 (direction -> WRD .)
+    CANVAS          reduce using rule 7 (direction -> WRD .)
+    LINE            reduce using rule 7 (direction -> WRD .)
+    CIRCLE          reduce using rule 7 (direction -> WRD .)
+    OVAL            reduce using rule 7 (direction -> WRD .)
+    RECT            reduce using rule 7 (direction -> WRD .)
+    TEXT            reduce using rule 7 (direction -> WRD .)
+    MOVE            reduce using rule 7 (direction -> WRD .)
+    IMG             reduce using rule 7 (direction -> WRD .)
+    QUOT            reduce using rule 7 (direction -> WRD .)
 
-    expression                     shift and go to state 37
 
 state 30
 
-    (13) expression -> IMG expression expression . expression expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (20) expression -> IMG expression expression . expression expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
-    expression                     shift and go to state 38
+    expression                     shift and go to state 39
 
 state 31
 
-    (3) expression -> BKGDCOLOR expression expression expression .
+    (8) expression -> CANVAS expression expression color .
 
-    $end            reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    CANVAS          reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    BKGDCOLOR       reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    NUMBER          reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    WRD             reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    COLOR           reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    LINE            reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    CIRCLE          reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    OVAL            reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    RECT            reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    TEXT            reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
-    IMG             reduce using rule 3 (expression -> BKGDCOLOR expression expression expression .)
+    $end            reduce using rule 8 (expression -> CANVAS expression expression color .)
+    NUMBER          reduce using rule 8 (expression -> CANVAS expression expression color .)
+    CANVAS          reduce using rule 8 (expression -> CANVAS expression expression color .)
+    LINE            reduce using rule 8 (expression -> CANVAS expression expression color .)
+    CIRCLE          reduce using rule 8 (expression -> CANVAS expression expression color .)
+    OVAL            reduce using rule 8 (expression -> CANVAS expression expression color .)
+    RECT            reduce using rule 8 (expression -> CANVAS expression expression color .)
+    TEXT            reduce using rule 8 (expression -> CANVAS expression expression color .)
+    MOVE            reduce using rule 8 (expression -> CANVAS expression expression color .)
+    IMG             reduce using rule 8 (expression -> CANVAS expression expression color .)
+    QUOT            reduce using rule 8 (expression -> CANVAS expression expression color .)
 
 
 state 32
 
-    (7) expression -> COLOR expression expression expression .
+    (2) color -> QUOT . WRD QUOT
 
-    $end            reduce using rule 7 (expression -> COLOR expression expression expression .)
-    CANVAS          reduce using rule 7 (expression -> COLOR expression expression expression .)
-    BKGDCOLOR       reduce using rule 7 (expression -> COLOR expression expression expression .)
-    NUMBER          reduce using rule 7 (expression -> COLOR expression expression expression .)
-    WRD             reduce using rule 7 (expression -> COLOR expression expression expression .)
-    COLOR           reduce using rule 7 (expression -> COLOR expression expression expression .)
-    LINE            reduce using rule 7 (expression -> COLOR expression expression expression .)
-    CIRCLE          reduce using rule 7 (expression -> COLOR expression expression expression .)
-    OVAL            reduce using rule 7 (expression -> COLOR expression expression expression .)
-    RECT            reduce using rule 7 (expression -> COLOR expression expression expression .)
-    TEXT            reduce using rule 7 (expression -> COLOR expression expression expression .)
-    IMG             reduce using rule 7 (expression -> COLOR expression expression expression .)
+    WRD             shift and go to state 40
 
 
 state 33
 
-    (8) expression -> LINE expression expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (10) expression -> LINE x-coor y-coor x-coor . y-coor color
+    (11) expression -> LINE x-coor y-coor x-coor . y-coor
+    (4) y-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 23
 
-    expression                     shift and go to state 39
+    y-coor                         shift and go to state 41
 
 state 34
 
-    (9) expression -> CIRCLE expression expression expression .
+    (12) expression -> CIRCLE x-coor y-coor radius . color
+    (13) expression -> CIRCLE x-coor y-coor radius .
+    (2) color -> . QUOT WRD QUOT
 
-    $end            reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    CANVAS          reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    BKGDCOLOR       reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    NUMBER          reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    WRD             reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    COLOR           reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    LINE            reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    CIRCLE          reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    OVAL            reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    RECT            reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    TEXT            reduce using rule 9 (expression -> CIRCLE expression expression expression .)
-    IMG             reduce using rule 9 (expression -> CIRCLE expression expression expression .)
+  ! shift/reduce conflict for QUOT resolved as shift
+    $end            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    NUMBER          reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    CANVAS          reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    LINE            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    CIRCLE          reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    OVAL            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    RECT            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    TEXT            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    MOVE            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    IMG             reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .)
+    QUOT            shift and go to state 32
 
+  ! QUOT            [ reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius .) ]
+
+    color                          shift and go to state 42
 
 state 35
 
-    (10) expression -> OVAL expression expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (5) radius -> NUMBER .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    QUOT            reduce using rule 5 (radius -> NUMBER .)
+    $end            reduce using rule 5 (radius -> NUMBER .)
+    NUMBER          reduce using rule 5 (radius -> NUMBER .)
+    CANVAS          reduce using rule 5 (radius -> NUMBER .)
+    LINE            reduce using rule 5 (radius -> NUMBER .)
+    CIRCLE          reduce using rule 5 (radius -> NUMBER .)
+    OVAL            reduce using rule 5 (radius -> NUMBER .)
+    RECT            reduce using rule 5 (radius -> NUMBER .)
+    TEXT            reduce using rule 5 (radius -> NUMBER .)
+    MOVE            reduce using rule 5 (radius -> NUMBER .)
+    IMG             reduce using rule 5 (radius -> NUMBER .)
 
-    expression                     shift and go to state 40
 
 state 36
 
-    (11) expression -> RECT expression expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (14) expression -> OVAL x-coor y-coor x-coor . y-coor color
+    (15) expression -> OVAL x-coor y-coor x-coor . y-coor
+    (4) y-coor -> . NUMBER
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    NUMBER          shift and go to state 23
 
-    expression                     shift and go to state 41
+    y-coor                         shift and go to state 43
 
 state 37
 
-    (12) expression -> TEXT expression expression expression .
+    (16) expression -> RECT x-coor y-coor x-coor . y-coor color
+    (17) expression -> RECT x-coor y-coor x-coor . y-coor
+    (4) y-coor -> . NUMBER
 
-    $end            reduce using rule 12 (expression -> TEXT expression expression expression .)
-    CANVAS          reduce using rule 12 (expression -> TEXT expression expression expression .)
-    BKGDCOLOR       reduce using rule 12 (expression -> TEXT expression expression expression .)
-    NUMBER          reduce using rule 12 (expression -> TEXT expression expression expression .)
-    WRD             reduce using rule 12 (expression -> TEXT expression expression expression .)
-    COLOR           reduce using rule 12 (expression -> TEXT expression expression expression .)
-    LINE            reduce using rule 12 (expression -> TEXT expression expression expression .)
-    CIRCLE          reduce using rule 12 (expression -> TEXT expression expression expression .)
-    OVAL            reduce using rule 12 (expression -> TEXT expression expression expression .)
-    RECT            reduce using rule 12 (expression -> TEXT expression expression expression .)
-    TEXT            reduce using rule 12 (expression -> TEXT expression expression expression .)
-    IMG             reduce using rule 12 (expression -> TEXT expression expression expression .)
+    NUMBER          shift and go to state 23
 
+    y-coor                         shift and go to state 44
 
 state 38
 
-    (13) expression -> IMG expression expression expression . expression
-    (1) expression -> . CANVAS expression expression
-    (2) expression -> . BKGDCOLOR expression
-    (3) expression -> . BKGDCOLOR expression expression expression
-    (4) expression -> . NUMBER
-    (5) expression -> . WRD
-    (6) expression -> . COLOR expression
-    (7) expression -> . COLOR expression expression expression
-    (8) expression -> . LINE expression expression expression expression
-    (9) expression -> . CIRCLE expression expression expression
-    (10) expression -> . OVAL expression expression expression expression
-    (11) expression -> . RECT expression expression expression expression
-    (12) expression -> . TEXT expression expression expression
-    (13) expression -> . IMG expression expression expression expression
+    (18) expression -> TEXT x-coor y-coor WRD .
 
-    CANVAS          shift and go to state 2
-    BKGDCOLOR       shift and go to state 3
-    NUMBER          shift and go to state 4
-    WRD             shift and go to state 5
-    COLOR           shift and go to state 6
-    LINE            shift and go to state 7
-    CIRCLE          shift and go to state 8
-    OVAL            shift and go to state 9
-    RECT            shift and go to state 10
-    TEXT            shift and go to state 11
-    IMG             shift and go to state 12
+    $end            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    NUMBER          reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    CANVAS          reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    LINE            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    CIRCLE          reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    OVAL            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    RECT            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    TEXT            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    MOVE            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    IMG             reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
+    QUOT            reduce using rule 18 (expression -> TEXT x-coor y-coor WRD .)
 
-    expression                     shift and go to state 42
 
 state 39
 
-    (8) expression -> LINE expression expression expression expression .
+    (20) expression -> IMG expression expression expression . expression
+    (1) expression -> . NUMBER
+    (8) expression -> . CANVAS expression expression color
+    (9) expression -> . CANVAS expression expression
+    (10) expression -> . LINE x-coor y-coor x-coor y-coor color
+    (11) expression -> . LINE x-coor y-coor x-coor y-coor
+    (12) expression -> . CIRCLE x-coor y-coor radius color
+    (13) expression -> . CIRCLE x-coor y-coor radius
+    (14) expression -> . OVAL x-coor y-coor x-coor y-coor color
+    (15) expression -> . OVAL x-coor y-coor x-coor y-coor
+    (16) expression -> . RECT x-coor y-coor x-coor y-coor color
+    (17) expression -> . RECT x-coor y-coor x-coor y-coor
+    (18) expression -> . TEXT x-coor y-coor WRD
+    (19) expression -> . MOVE speed direction
+    (20) expression -> . IMG expression expression expression expression
 
-    $end            reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    CANVAS          reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    BKGDCOLOR       reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    NUMBER          reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    WRD             reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    COLOR           reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    LINE            reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    CIRCLE          reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    OVAL            reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    RECT            reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    TEXT            reduce using rule 8 (expression -> LINE expression expression expression expression .)
-    IMG             reduce using rule 8 (expression -> LINE expression expression expression expression .)
+    NUMBER          shift and go to state 2
+    CANVAS          shift and go to state 3
+    LINE            shift and go to state 4
+    CIRCLE          shift and go to state 5
+    OVAL            shift and go to state 6
+    RECT            shift and go to state 7
+    TEXT            shift and go to state 8
+    MOVE            shift and go to state 9
+    IMG             shift and go to state 10
 
+    expression                     shift and go to state 45
 
 state 40
 
-    (10) expression -> OVAL expression expression expression expression .
+    (2) color -> QUOT WRD . QUOT
 
-    $end            reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    CANVAS          reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    BKGDCOLOR       reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    NUMBER          reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    WRD             reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    COLOR           reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    LINE            reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    CIRCLE          reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    OVAL            reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    RECT            reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    TEXT            reduce using rule 10 (expression -> OVAL expression expression expression expression .)
-    IMG             reduce using rule 10 (expression -> OVAL expression expression expression expression .)
+    QUOT            shift and go to state 46
 
 
 state 41
 
-    (11) expression -> RECT expression expression expression expression .
+    (10) expression -> LINE x-coor y-coor x-coor y-coor . color
+    (11) expression -> LINE x-coor y-coor x-coor y-coor .
+    (2) color -> . QUOT WRD QUOT
 
-    $end            reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    CANVAS          reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    BKGDCOLOR       reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    NUMBER          reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    WRD             reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    COLOR           reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    LINE            reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    CIRCLE          reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    OVAL            reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    RECT            reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    TEXT            reduce using rule 11 (expression -> RECT expression expression expression expression .)
-    IMG             reduce using rule 11 (expression -> RECT expression expression expression expression .)
+  ! shift/reduce conflict for QUOT resolved as shift
+    $end            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    NUMBER          reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    CANVAS          reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    LINE            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    CIRCLE          reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    OVAL            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    RECT            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    TEXT            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    MOVE            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    IMG             reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    QUOT            shift and go to state 32
 
+  ! QUOT            [ reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor .) ]
+
+    color                          shift and go to state 47
 
 state 42
 
-    (13) expression -> IMG expression expression expression expression .
+    (12) expression -> CIRCLE x-coor y-coor radius color .
 
-    $end            reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    CANVAS          reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    BKGDCOLOR       reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    NUMBER          reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    WRD             reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    COLOR           reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    LINE            reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    CIRCLE          reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    OVAL            reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    RECT            reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    TEXT            reduce using rule 13 (expression -> IMG expression expression expression expression .)
-    IMG             reduce using rule 13 (expression -> IMG expression expression expression expression .)
+    $end            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    NUMBER          reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    CANVAS          reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    LINE            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    CIRCLE          reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    OVAL            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    RECT            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    TEXT            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    MOVE            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    IMG             reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+    QUOT            reduce using rule 12 (expression -> CIRCLE x-coor y-coor radius color .)
+
+
+state 43
+
+    (14) expression -> OVAL x-coor y-coor x-coor y-coor . color
+    (15) expression -> OVAL x-coor y-coor x-coor y-coor .
+    (2) color -> . QUOT WRD QUOT
+
+  ! shift/reduce conflict for QUOT resolved as shift
+    $end            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    NUMBER          reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    CANVAS          reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    LINE            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    CIRCLE          reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    OVAL            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    RECT            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    TEXT            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    MOVE            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    IMG             reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    QUOT            shift and go to state 32
+
+  ! QUOT            [ reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor .) ]
+
+    color                          shift and go to state 48
+
+state 44
+
+    (16) expression -> RECT x-coor y-coor x-coor y-coor . color
+    (17) expression -> RECT x-coor y-coor x-coor y-coor .
+    (2) color -> . QUOT WRD QUOT
+
+  ! shift/reduce conflict for QUOT resolved as shift
+    $end            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    NUMBER          reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    CANVAS          reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    LINE            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    CIRCLE          reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    OVAL            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    RECT            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    TEXT            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    MOVE            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    IMG             reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    QUOT            shift and go to state 32
+
+  ! QUOT            [ reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor .) ]
+
+    color                          shift and go to state 49
+
+state 45
+
+    (20) expression -> IMG expression expression expression expression .
+
+    $end            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    NUMBER          reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    CANVAS          reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    LINE            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    CIRCLE          reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    OVAL            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    RECT            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    TEXT            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    MOVE            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    IMG             reduce using rule 20 (expression -> IMG expression expression expression expression .)
+    QUOT            reduce using rule 20 (expression -> IMG expression expression expression expression .)
+
+
+state 46
+
+    (2) color -> QUOT WRD QUOT .
+
+    $end            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    NUMBER          reduce using rule 2 (color -> QUOT WRD QUOT .)
+    CANVAS          reduce using rule 2 (color -> QUOT WRD QUOT .)
+    LINE            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    CIRCLE          reduce using rule 2 (color -> QUOT WRD QUOT .)
+    OVAL            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    RECT            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    TEXT            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    MOVE            reduce using rule 2 (color -> QUOT WRD QUOT .)
+    IMG             reduce using rule 2 (color -> QUOT WRD QUOT .)
+    QUOT            reduce using rule 2 (color -> QUOT WRD QUOT .)
+
+
+state 47
+
+    (10) expression -> LINE x-coor y-coor x-coor y-coor color .
+
+    $end            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    NUMBER          reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    CANVAS          reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    LINE            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    CIRCLE          reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    OVAL            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    RECT            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    TEXT            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    MOVE            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    IMG             reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    QUOT            reduce using rule 10 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+
+
+state 48
+
+    (14) expression -> OVAL x-coor y-coor x-coor y-coor color .
+
+    $end            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    NUMBER          reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    CANVAS          reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    LINE            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    CIRCLE          reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    OVAL            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    RECT            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    TEXT            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    MOVE            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    IMG             reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    QUOT            reduce using rule 14 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+
+
+state 49
+
+    (16) expression -> RECT x-coor y-coor x-coor y-coor color .
+
+    $end            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    NUMBER          reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    CANVAS          reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    LINE            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    CIRCLE          reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    OVAL            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    RECT            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    TEXT            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    MOVE            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    IMG             reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    QUOT            reduce using rule 16 (expression -> RECT x-coor y-coor x-coor y-coor color .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for CANVAS in state 14 resolved as shift
-WARNING: shift/reduce conflict for BKGDCOLOR in state 14 resolved as shift
-WARNING: shift/reduce conflict for NUMBER in state 14 resolved as shift
-WARNING: shift/reduce conflict for WRD in state 14 resolved as shift
-WARNING: shift/reduce conflict for COLOR in state 14 resolved as shift
-WARNING: shift/reduce conflict for LINE in state 14 resolved as shift
-WARNING: shift/reduce conflict for CIRCLE in state 14 resolved as shift
-WARNING: shift/reduce conflict for OVAL in state 14 resolved as shift
-WARNING: shift/reduce conflict for RECT in state 14 resolved as shift
-WARNING: shift/reduce conflict for TEXT in state 14 resolved as shift
-WARNING: shift/reduce conflict for IMG in state 14 resolved as shift
-WARNING: shift/reduce conflict for CANVAS in state 15 resolved as shift
-WARNING: shift/reduce conflict for BKGDCOLOR in state 15 resolved as shift
-WARNING: shift/reduce conflict for NUMBER in state 15 resolved as shift
-WARNING: shift/reduce conflict for WRD in state 15 resolved as shift
-WARNING: shift/reduce conflict for COLOR in state 15 resolved as shift
-WARNING: shift/reduce conflict for LINE in state 15 resolved as shift
-WARNING: shift/reduce conflict for CIRCLE in state 15 resolved as shift
-WARNING: shift/reduce conflict for OVAL in state 15 resolved as shift
-WARNING: shift/reduce conflict for RECT in state 15 resolved as shift
-WARNING: shift/reduce conflict for TEXT in state 15 resolved as shift
-WARNING: shift/reduce conflict for IMG in state 15 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 21 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 34 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 41 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 43 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 44 resolved as shift
