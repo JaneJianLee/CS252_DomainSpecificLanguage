@@ -5,6 +5,8 @@ import ply.yacc as yacc
 from lexer_dl import tokens
 from tkinter import *
 import time
+import math
+
 root = Tk()
 w = None
 last_obj = None
@@ -16,6 +18,11 @@ width, height = 0, 0
 scaleFactor = 1
 prevScaleFactor = 1
 bShowPrevScale = False
+
+#for rotating
+degrees = 0
+rotateDirection = ""
+numPoints = []
 
 def p_expression_number(p):
     'expression : NUMBER'
@@ -35,6 +42,10 @@ def p_expression_ycoor(p):
     
 def p_expression_radius(p):
     'radius : NUMBER'
+    p[0]=p[1]
+
+def p_expression_degrees(p):
+    'degrees : NUMBER'
     p[0]=p[1]
 
 def p_expression_speed(p):
@@ -161,6 +172,32 @@ def p_expression_move(p):
             w.pack()
             time.sleep(0.1)
 
+def p_expression_rotate(p):
+    '''expression : ROTATE LEFT degrees
+                  | ROTATE RIGHT degrees'''
+    global degrees, rotateDirection, args_last, flag_shape_last, numPoints
+    print("I am in rotate~!")
+    degrees = p[3]
+    sinRad = math.sin(math.radians(degrees))
+    cosRad = math.cos(math.radians(degrees))
+    points = args_last[:-1]
+    #x1, y1, x2, y2
+    coords = [[points[0], points[1]], [points[2], points[1]], [points[2], points[3]], [points[0], points[3]]]
+    center = [points[0], points[1]]
+    print(coords[0])
+    newPoints = []
+    for x, y in coords:
+        x -= center[0]
+        y -= center[1]
+        xnew = x*cosRad - y*sinRad
+        ynew = x*sinRad + y*cosRad
+        numPoints.append([xnew + center[0], ynew + center[1]])
+    print(numPoints[1])
+
+    flag_shape_last = "polygon" #rotated rectangles have to become polygon
+    redrawShapeTransform()
+
+
 def p_expression_scale(p):
     '''expression : BIGGER
                   | SMALLER
@@ -181,8 +218,9 @@ def p_expression_scale(p):
 def redrawShapeTransform():
     global last_obj, flag_shape_last, args_last, bShowPrevScale, prevScaleFactor, scaleFactor
     w.delete(last_obj)
-    args_last[2] *= scaleFactor
-    args_last[3] *= scaleFactor
+    if flag_shape_last != "polygon":
+        args_last[2] *= scaleFactor
+        args_last[3] *= scaleFactor
 
     if flag_shape_last == "line":
         # Draw line
@@ -196,6 +234,10 @@ def redrawShapeTransform():
     elif flag_shape_last == "rectangle":
         # Draw rectangle
         last_obj = w.create_rectangle(args_last[0], args_last[1], args_last[2], args_last[3], fill=args_last[4], outline=args_last[4])
+    elif flag_shape_last == "polygon":
+        print("am i drawing")
+        print(numPoints)
+        last_obj = w.create_polygon(numPoints, fill=args_last[-1])
 
     # if bShowPrevScale:
     #     w.create_oval(x0, x1, y0 * prevScaleFactor, y1 * prevScaleFactor, dash=(5, 3), outline="snow3", width=4)

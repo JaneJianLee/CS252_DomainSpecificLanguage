@@ -12,7 +12,10 @@ tokens = ('CANVAS',
          'MOVE',
          'BIGGER',
          'SMALLER',
-         'SHOW'
+         'SHOW',
+         'ROTATE',
+         'LEFT',
+         'RIGHT'
          )
 
 def t_CANVAS(t):
@@ -46,6 +49,18 @@ def t_BIGGER(t):
 
 def t_SMALLER(t):
     r'makeSmaller'
+    return t
+
+def t_ROTATE(t):
+    r'turn'
+    return t
+
+def t_LEFT(t):
+    r'left'
+    return t
+
+def t_RIGHT(t):
+    r'right'
     return t
 
 def t_SHOW(t):
