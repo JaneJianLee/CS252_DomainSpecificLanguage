@@ -8,7 +8,14 @@ import time
 root = Tk()
 w = None
 last_obj = None
+args_last = [] #args for the last shape
+flag_shape_last = "" #flag for the last shape
 width, height = 0, 0
+
+#for scaling
+scaleFactor = 1
+prevScaleFactor = 1
+bShowPrevScale = False
 
 def p_expression_number(p):
     'expression : NUMBER'
@@ -53,16 +60,25 @@ def p_expression_canvas(p):
 def p_expression_line(p):
     '''expression : LINE x-coor y-coor x-coor y-coor color
                   | LINE x-coor y-coor x-coor y-coor'''
-    global last_obj
+    global last_obj, args_last, flag_shape_last
+    flag_shape_last = "line"
+    #1 deletes
+    # arg = []
+    # #2
+    # setArgs(p)
     if len(p) == 6: #default
-        last_obj = w.create_line(p[2],p[3],p[4],p[5])
+        last_obj = w.create_line(p[2],p[3],p[4]*scaleFactor,p[5]*scaleFactor)
+        args_last = [p[2],p[3],p[4],p[5],"black"]
     else:
-        last_obj = w.create_line(p[2],p[3],p[4],p[5], fill=p[6])
+        last_obj = w.create_line(p[2],p[3],p[4]*scaleFactor,p[5]*scaleFactor, fill=p[6])
+        args_last = [p[2],p[3],p[4],p[5],p[6]]
 
 def p_expression_circle(p):
     '''expression : CIRCLE x-coor y-coor radius color
                   | CIRCLE x-coor y-coor radius'''
-    global last_obj
+    global last_obj, args_last, flag_shape_last
+    flag_shape_last = "circle"
+
     x0=p[2]-p[4]
     x1=p[3]-p[4]
     y0=p[2]+p[4]
@@ -70,27 +86,45 @@ def p_expression_circle(p):
 
     if len(p) == 5: #default
         last_obj = w.create_oval(x0, x1, y0, y1, fill="black", outline="black", width=4)
+        args_last = [x0, x1, y0, y1, "black"]
     else:
         last_obj = w.create_oval(x0, x1, y0, y1, fill=p[5], outline="black", width=4)
+        args_last = [x0, x1, y0, y1, p[5]]
+
+
+
 
 def p_expression_oval(p):
     '''expression : OVAL x-coor y-coor x-coor y-coor color
                   | OVAL x-coor y-coor x-coor y-coor'''
-    global last_obj
+    global last_obj, scaleFactor, prevScaleFactor, bShowPrevScale, flag_shape_last, args_last
+    flag_shape_last = "oval"
+
     if len(p) == 6: #default
-        last_obj = w.create_oval(p[2], p[3], p[4], p[5])
+        last_obj = w.create_oval(p[2], p[3], p[4]*scaleFactor, p[5]*scaleFactor)
+        args_last = [p[2], p[3], p[4], p[5], "black"]
     else:
-        last_obj = w.create_oval(p[2], p[3], p[4], p[5], fill=p[6])
+        last_obj = w.create_oval(p[2], p[3], p[4]*scaleFactor, p[5]*scaleFactor, fill=p[6])
+        args_last = [p[2], p[3], p[4], p[5], p[6]]
+
+    # reset scaleFactor
+    bShowPrevScale = False
+    prevScaleFactor = 1
+    scaleFactor = 1
 
 
 def p_expression_rectangle(p):
     '''expression : RECT x-coor y-coor x-coor y-coor color
                   | RECT x-coor y-coor x-coor y-coor'''
-    global last_obj
+    global last_obj, scaleFactor, prevScaleFactor, bShowPrevScale, args_last, flag_shape_last
+    flag_shape_last = "rectangle"
+
     if len(p) == 6:
         last_obj = w.create_rectangle(p[2], p[3], p[4], p[5])
+        args_last = [p[2], p[3], p[4], p[5], "black"]
     else:
         last_obj = w.create_rectangle(p[2],p[3],p[4],p[5], fill=p[6])
+        args_last = [p[2], p[3], p[4], p[5], p[6]]
 
 def p_expression_text(p):    
     'expression : TEXT x-coor y-coor WRD'
@@ -125,7 +159,52 @@ def p_expression_move(p):
             w.move(last_obj,0,yspeed)
             root.update()
             w.pack()
-            time.sleep(0.1)    
+            time.sleep(0.1)
+
+
+def p_expression_scale(p):
+    '''expression : BIGGER
+                  | SMALLER
+                  | BIGGER SHOW
+                  | SMALLER SHOW'''
+    global scaleFactor, prevScaleFactor, bShowPrevScale
+
+    if len(p) == 3: #set previous scale factor if toggle "show" is executed
+        bShowPrevScale = True
+        prevScaleFactor = scaleFactor
+    if p[1] == 'smaller':
+        scaleFactor = 0.5
+    else:
+        scaleFactor = 1.5
+
+    redrawShapeTransform() #redraw shape here
+
+def redrawShapeTransform():
+    global last_obj, flag_shape_last, args_last, bShowPrevScale, prevScaleFactor, scaleFactor
+    w.delete(last_obj)
+    args_last[2] *= scaleFactor
+    args_last[3] *= scaleFactor
+
+    if flag_shape_last == "line":
+        # Draw line
+        last_obj = w.create_line(args_last[0], args_last[1], args_last[2], args_last[3], fill=args_last[4])
+    elif flag_shape_last == "circle":
+        # Draw circle
+        last_obj = w.create_oval(args_last[0], args_last[1], args_last[2], args_last[3], fill=args_last[4])
+    elif flag_shape_last == "oval":
+        # Draw oval
+        last_obj = w.create_oval(args_last[0], args_last[1], args_last[2], args_last[3], fill=args_last[4])
+    elif flag_shape_last == "rectangle":
+        # Draw rectangle
+        last_obj = w.create_rectangle(args_last[0], args_last[1], args_last[2], args_last[3], fill=args_last[4], outline=args_last[4])
+
+    # if bShowPrevScale:
+    #     w.create_oval(x0, x1, y0 * prevScaleFactor, y1 * prevScaleFactor, dash=(5, 3), outline="snow3", width=4)
+    # reset scaleFactor
+    bShowPrevScale = False
+    prevScaleFactor = 1
+    scaleFactor = 1
+
 
 def p_error(p):
     print("Syntax error at '%s'" % p.value)
@@ -135,6 +214,8 @@ parser = yacc.yacc()
 
 with open(filename, 'r') as fp:
     for line in fp:
+        if line is "\n":  # hacky solution for skipping the extra newlines :( - Ai-Linh
+            continue
         print(line)
         try:
             parser.parse(line)

@@ -1,12 +1,13 @@
 canvas(500,500,"bisque")
+
 line(0,0,200,200,"cyan")
+
 oval(0,100,250,250,"magenta")
-rectangle(0,0,200,200,"green")
-text(300,300,judy)
-circle(100,200,50)
-move(slow,v)
+
+rectangle(120,120,200,200,"green")
+smaller
+
 text(300,300,judy)
 
-#bigger show
-#smaller noshow
-#turn(left, 45)
+circle(100,200,50)
+move(slow,v)

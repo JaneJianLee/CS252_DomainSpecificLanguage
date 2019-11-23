@@ -9,7 +9,10 @@ tokens = ('CANVAS',
          'WRD',
          'TEXT',
          'QUOT',
-         'MOVE'
+         'MOVE',
+         'BIGGER',
+         'SMALLER',
+         'SHOW'
          )
 
 def t_CANVAS(t):
@@ -35,6 +38,18 @@ def t_OVAL(t):
 
 def t_MOVE(t):
     r'move'
+    return t
+
+def t_BIGGER(t):
+    r'bigger'
+    return t
+
+def t_SMALLER(t):
+    r'smaller'
+    return t
+
+def t_SHOW(t):
+    r'show'
     return t
 
 def t_RECT(t):
