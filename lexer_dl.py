@@ -41,11 +41,11 @@ def t_MOVE(t):
     return t
 
 def t_BIGGER(t):
-    r'bigger'
+    r'makeBigger'
     return t
 
 def t_SMALLER(t):
-    r'smaller'
+    r'makeSmaller'
     return t
 
 def t_SHOW(t):

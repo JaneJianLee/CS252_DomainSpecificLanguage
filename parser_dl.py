@@ -161,7 +161,6 @@ def p_expression_move(p):
             w.pack()
             time.sleep(0.1)
 
-
 def p_expression_scale(p):
     '''expression : BIGGER
                   | SMALLER
@@ -172,7 +171,7 @@ def p_expression_scale(p):
     if len(p) == 3: #set previous scale factor if toggle "show" is executed
         bShowPrevScale = True
         prevScaleFactor = scaleFactor
-    if p[1] == 'smaller':
+    if p[1] == 'makeSmaller':
         scaleFactor = 0.5
     else:
         scaleFactor = 1.5
