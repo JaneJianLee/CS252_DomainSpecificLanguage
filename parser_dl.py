@@ -22,7 +22,6 @@ bShowPrevScale = False
 #for rotating
 degrees = 0
 rotateDirection = ""
-numPoints = []
 
 def p_expression_number(p):
     'expression : NUMBER'
@@ -176,23 +175,30 @@ def p_expression_rotate(p):
     '''expression : ROTATE LEFT degrees
                   | ROTATE RIGHT degrees'''
     global degrees, rotateDirection, args_last, flag_shape_last, numPoints
-    print("I am in rotate~!")
+    #print("I am in rotate~!")
     degrees = p[3]
+    if p[2] == 'left':
+        degrees = -1*degrees
     sinRad = math.sin(math.radians(degrees))
     cosRad = math.cos(math.radians(degrees))
     points = args_last[:-1]
     #x1, y1, x2, y2
     coords = [[points[0], points[1]], [points[2], points[1]], [points[2], points[3]], [points[0], points[3]]]
     center = [points[0], points[1]]
-    print(coords[0])
+    #print(coords)
     newPoints = []
     for x, y in coords:
         x -= center[0]
         y -= center[1]
         xnew = x*cosRad - y*sinRad
         ynew = x*sinRad + y*cosRad
-        numPoints.append([xnew + center[0], ynew + center[1]])
-    print(numPoints[1])
+        newPoints.append([xnew + center[0], ynew + center[1]])
+
+
+    #reset args = [[coords], colorstr]
+    sColor = args_last[-1]
+    args_last = newPoints
+    args_last.append(sColor)
 
     flag_shape_last = "polygon" #rotated rectangles have to become polygon
     redrawShapeTransform()
@@ -212,6 +218,8 @@ def p_expression_scale(p):
         scaleFactor = 0.5
     else:
         scaleFactor = 1.5
+
+    #reset args_last
 
     redrawShapeTransform() #redraw shape here
 
@@ -235,9 +243,8 @@ def redrawShapeTransform():
         # Draw rectangle
         last_obj = w.create_rectangle(args_last[0], args_last[1], args_last[2], args_last[3], fill=args_last[4], outline=args_last[4])
     elif flag_shape_last == "polygon":
-        print("am i drawing")
-        print(numPoints)
-        last_obj = w.create_polygon(numPoints, fill=args_last[-1])
+        print(args_last)
+        last_obj = w.create_polygon(args_last[:-1], fill=args_last[-1])
 
     # if bShowPrevScale:
     #     w.create_oval(x0, x1, y0 * prevScaleFactor, y1 * prevScaleFactor, dash=(5, 3), outline="snow3", width=4)

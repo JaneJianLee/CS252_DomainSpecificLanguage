@@ -6,7 +6,7 @@ oval(0,100,250,250,"magenta")
 
 rectangle(120,120,200,200,"green")
 makeBigger
-turn left 45
+turn left 50
 
 text(300,300,judy)
 
