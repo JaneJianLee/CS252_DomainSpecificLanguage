@@ -262,7 +262,19 @@ def p_expression_mirror(p):
     sColor = args_last[-1]
     points = args_last[:-1]
     if p[1] == "mirrory":
-        if flag_shape_last == "rectangle":
+        if flag_shape_last != "polygon":
+            if flag_shape_last == "circle":
+                if points[0] == cx:
+                    print("Overlaps! No flipping over y-axis.")
+                else:
+                    dist1 = abs(cx - points[0])
+                    if points[0] < cx:
+                        x1new = cx + dist1
+                    else:
+                        x1new = cx - dist1
+                    args_last[0] = x1new
+                    redrawShapeTransform()
+
             if points[0] <= cx and points[2] >= cx:
                 print("Overlaps! No flipping over y-axis.")
             else:
@@ -279,9 +291,21 @@ def p_expression_mirror(p):
                 redrawShapeTransform()
 
     if p[1] == "mirrorx":
-        if flag_shape_last == "rectangle":
+        if flag_shape_last != "polygon":
+            if flag_shape_last == "circle":
+                if points[1] == cy:
+                    print("Overlaps! No flipping over x-axis.")
+                else:
+                    dist1 = abs(cy - points[1])
+                    if points[1] < cy:
+                        y1new = cy + dist1
+                    else:
+                        y1new = cy - dist1
+                    args_last[1] = y1new
+                    redrawShapeTransform()
+
             if points[1] <= cy and points[3] >= cy:
-                print("Overlaps! No flipping over y-axis.")
+                print("Overlaps! No flipping over x-axis.")
             else:
                 dist1 = abs(cy - points[1])
                 dist2 = abs(cy - points[3])
