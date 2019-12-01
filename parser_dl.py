@@ -155,7 +155,7 @@ def p_expression_move(p):
             w.move(last_obj,xspeed,0)
             root.update()
             w.pack()
-            time.sleep(0.1)
+            time.sleep(0.01)
 
     elif p[3] == 'v':
         if p[2] == 'fast':
@@ -169,7 +169,7 @@ def p_expression_move(p):
             w.move(last_obj,0,yspeed)
             root.update()
             w.pack()
-            time.sleep(0.1)
+            time.sleep(0.01)
 
 def p_expression_rotate(p):
     '''expression : ROTATE LEFT degrees
@@ -253,6 +253,23 @@ def redrawShapeTransform():
     prevScaleFactor = 1
     scaleFactor = 1
 
+def p_expression_bounceball(p):
+    'expression : BOUNCEBALL'
+    ball = w.create_oval(5,5,60,60,fill="blue")
+    x, y = 1, 3
+    
+    while True:
+        w.move(ball,x,y)
+        pos = w.coords(ball)
+        if pos[3] >= width or pos[1] <=0:
+            y=-y
+        if pos[2] >= height or pos[0] <=0:
+            x=-x
+        
+        root.update()
+        w.pack()
+        time.sleep(0.01)
+        pass
 
 def p_error(p):
     print("Syntax error at '%s'" % p.value)

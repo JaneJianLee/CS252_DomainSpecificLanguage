@@ -49,8 +49,8 @@ _lr_productions = [
   ('expression -> MOVE speed direction','expression',3,'p_expression_move','parser_dl.py',145),
   ('expression -> ROTATE LEFT degrees','expression',3,'p_expression_rotate','parser_dl.py',175),
   ('expression -> ROTATE RIGHT degrees','expression',3,'p_expression_rotate','parser_dl.py',176),
-  ('expression -> BIGGER','expression',1,'p_expression_scale','parser_dl.py',208),
-  ('expression -> SMALLER','expression',1,'p_expression_scale','parser_dl.py',209),
-  ('expression -> BIGGER SHOW','expression',2,'p_expression_scale','parser_dl.py',210),
-  ('expression -> SMALLER SHOW','expression',2,'p_expression_scale','parser_dl.py',211),
+  ('expression -> BIGGER','expression',1,'p_expression_scale','parser_dl.py',198),
+  ('expression -> SMALLER','expression',1,'p_expression_scale','parser_dl.py',199),
+  ('expression -> BIGGER SHOW','expression',2,'p_expression_scale','parser_dl.py',200),
+  ('expression -> SMALLER SHOW','expression',2,'p_expression_scale','parser_dl.py',201),
 ]
