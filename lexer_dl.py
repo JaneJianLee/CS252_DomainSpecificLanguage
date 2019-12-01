@@ -15,7 +15,8 @@ tokens = ('CANVAS',
          'SHOW',
          'ROTATE',
          'LEFT',
-         'RIGHT'
+         'RIGHT',
+         'BOUNCEBALL'
          )
 
 def t_CANVAS(t):
@@ -70,6 +71,10 @@ def t_SHOW(t):
 def t_RECT(t):
     r'rectangle'
     return t
+    
+def t_BOUNCEBALL(t):
+    r'bounceball'
+    return t
 
 def t_TEXT(t):
     r'text'
@@ -82,7 +87,7 @@ def t_WRD(t):
 def t_QUOT(t):
     r'\"'
     return t
-    
+
 def t_LBRACE(t):
     r'\('
     pass

@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'BIGGER CANVAS CIRCLE LEFT LINE MOVE NUMBER OVAL QUOT RECT RIGHT ROTATE SHOW SMALLER TEXT WRDexpression : NUMBERcolor : QUOT WRD QUOTx-coor : NUMBERy-coor : NUMBERradius : NUMBERdegrees : NUMBERspeed : WRDdirection : WRDexpression : CANVAS expression expression color\n                  | CANVAS expression expressionexpression : LINE x-coor y-coor x-coor y-coor color\n                  | LINE x-coor y-coor x-coor y-coorexpression : CIRCLE x-coor y-coor radius color\n                  | CIRCLE x-coor y-coor radiusexpression : OVAL x-coor y-coor x-coor y-coor color\n                  | OVAL x-coor y-coor x-coor y-coorexpression : RECT x-coor y-coor x-coor y-coor color\n                  | RECT x-coor y-coor x-coor y-coorexpression : TEXT x-coor y-coor WRDexpression : MOVE speed directionexpression : ROTATE LEFT degrees\n                  | ROTATE RIGHT degreesexpression : BIGGER\n                  | SMALLER\n                  | BIGGER SHOW\n                  | SMALLER SHOW'
+_lr_signature = 'BIGGER BOUNCEBALL CANVAS CIRCLE LEFT LINE MOVE NUMBER OVAL QUOT RECT RIGHT ROTATE SHOW SMALLER TEXT WRDexpression : NUMBERcolor : QUOT WRD QUOTx-coor : NUMBERy-coor : NUMBERradius : NUMBERdegrees : NUMBERspeed : WRDdirection : WRDexpression : CANVAS expression expression color\n                  | CANVAS expression expressionexpression : LINE x-coor y-coor x-coor y-coor color\n                  | LINE x-coor y-coor x-coor y-coorexpression : CIRCLE x-coor y-coor radius color\n                  | CIRCLE x-coor y-coor radiusexpression : OVAL x-coor y-coor x-coor y-coor color\n                  | OVAL x-coor y-coor x-coor y-coorexpression : RECT x-coor y-coor x-coor y-coor color\n                  | RECT x-coor y-coor x-coor y-coorexpression : TEXT x-coor y-coor WRDexpression : MOVE speed directionexpression : ROTATE LEFT degrees\n                  | ROTATE RIGHT degreesexpression : BIGGER\n                  | SMALLER\n                  | BIGGER SHOW\n                  | SMALLER SHOWexpression : BOUNCEBALL'
     
-_lr_action_items = {'NUMBER':([0,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,19,22,23,24,25,26,27,28,29,30,31,33,34,35,36,37,38,40,41,42,43,44,45,47,48,49,50,51,52,53,54,],[2,-1,2,15,15,15,15,15,-23,-24,2,28,-3,28,28,28,28,36,36,-25,-26,-10,15,-4,42,15,15,-20,-8,-21,-6,-22,-9,28,-14,-5,28,28,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'CANVAS':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[3,-1,3,-23,-24,3,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'LINE':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[4,-1,4,-23,-24,4,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'CIRCLE':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[5,-1,5,-23,-24,5,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'OVAL':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[6,-1,6,-23,-24,6,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'RECT':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[7,-1,7,-23,-24,7,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'TEXT':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[8,-1,8,-23,-24,8,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'MOVE':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[9,-1,9,-23,-24,9,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'ROTATE':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[10,-1,10,-23,-24,10,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'BIGGER':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[11,-1,11,-23,-24,11,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'SMALLER':([0,2,3,11,12,13,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[12,-1,12,-23,-24,12,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'$end':([1,2,11,12,24,25,26,28,33,34,35,36,37,38,41,42,45,47,48,49,50,51,52,53,54,],[0,-1,-23,-24,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'QUOT':([2,11,12,24,25,26,28,33,34,35,36,37,38,41,42,45,46,47,48,49,50,51,52,53,54,],[-1,-23,-24,-25,-26,39,-4,-20,-8,-21,-6,-22,-9,39,-5,-19,51,39,-13,39,39,-2,-11,-15,-17,]),'WRD':([9,20,21,28,32,39,],[21,34,-7,-4,45,46,]),'LEFT':([10,],[22,]),'RIGHT':([10,],[23,]),'SHOW':([11,12,],[24,25,]),}
+_lr_action_items = {'NUMBER':([0,2,3,4,5,6,7,8,11,12,13,14,15,16,17,18,19,20,23,24,25,26,27,28,29,30,31,32,34,35,36,37,38,39,41,42,43,44,45,46,48,49,50,51,52,53,54,55,],[2,-1,2,16,16,16,16,16,-23,-24,-27,2,29,-3,29,29,29,29,37,37,-25,-26,-10,16,-4,43,16,16,-20,-8,-21,-6,-22,-9,29,-14,-5,29,29,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'CANVAS':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[3,-1,3,-23,-24,-27,3,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'LINE':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[4,-1,4,-23,-24,-27,4,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'CIRCLE':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[5,-1,5,-23,-24,-27,5,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'OVAL':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[6,-1,6,-23,-24,-27,6,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'RECT':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[7,-1,7,-23,-24,-27,7,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'TEXT':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[8,-1,8,-23,-24,-27,8,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'MOVE':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[9,-1,9,-23,-24,-27,9,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'ROTATE':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[10,-1,10,-23,-24,-27,10,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'BIGGER':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[11,-1,11,-23,-24,-27,11,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'SMALLER':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[12,-1,12,-23,-24,-27,12,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'BOUNCEBALL':([0,2,3,11,12,13,14,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[13,-1,13,-23,-24,-27,13,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'$end':([1,2,11,12,13,25,26,27,29,34,35,36,37,38,39,42,43,46,48,49,50,51,52,53,54,55,],[0,-1,-23,-24,-27,-25,-26,-10,-4,-20,-8,-21,-6,-22,-9,-14,-5,-19,-12,-13,-16,-18,-2,-11,-15,-17,]),'QUOT':([2,11,12,13,25,26,27,29,34,35,36,37,38,39,42,43,46,47,48,49,50,51,52,53,54,55,],[-1,-23,-24,-27,-25,-26,40,-4,-20,-8,-21,-6,-22,-9,40,-5,-19,52,40,-13,40,40,-2,-11,-15,-17,]),'WRD':([9,21,22,29,33,40,],[22,35,-7,-4,46,47,]),'LEFT':([10,],[23,]),'RIGHT':([10,],[24,]),'SHOW':([11,12,],[25,26,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,3,13,],[1,13,26,]),'x-coor':([4,5,6,7,8,27,30,31,],[14,16,17,18,19,40,43,44,]),'speed':([9,],[20,]),'y-coor':([14,16,17,18,19,40,43,44,],[27,29,30,31,32,47,49,50,]),'direction':([20,],[33,]),'degrees':([22,23,],[35,37,]),'color':([26,41,47,49,50,],[38,48,52,53,54,]),'radius':([29,],[41,]),}
+_lr_goto_items = {'expression':([0,3,14,],[1,14,27,]),'x-coor':([4,5,6,7,8,28,31,32,],[15,17,18,19,20,41,44,45,]),'speed':([9,],[21,]),'y-coor':([15,17,18,19,20,41,44,45,],[28,30,31,32,33,48,50,51,]),'direction':([21,],[34,]),'degrees':([23,24,],[36,38,]),'color':([27,42,48,50,51,],[39,49,53,54,55,]),'radius':([30,],[42,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,30 +27,31 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> NUMBER','expression',1,'p_expression_number','parser_dl.py',27),
-  ('color -> QUOT WRD QUOT','color',3,'p_expression_color','parser_dl.py',31),
-  ('x-coor -> NUMBER','x-coor',1,'p_expression_xcoor','parser_dl.py',35),
-  ('y-coor -> NUMBER','y-coor',1,'p_expression_ycoor','parser_dl.py',39),
-  ('radius -> NUMBER','radius',1,'p_expression_radius','parser_dl.py',43),
-  ('degrees -> NUMBER','degrees',1,'p_expression_degrees','parser_dl.py',47),
-  ('speed -> WRD','speed',1,'p_expression_speed','parser_dl.py',51),
-  ('direction -> WRD','direction',1,'p_expression_direction','parser_dl.py',55),
-  ('expression -> CANVAS expression expression color','expression',4,'p_expression_canvas','parser_dl.py',59),
-  ('expression -> CANVAS expression expression','expression',3,'p_expression_canvas','parser_dl.py',60),
-  ('expression -> LINE x-coor y-coor x-coor y-coor color','expression',6,'p_expression_line','parser_dl.py',71),
-  ('expression -> LINE x-coor y-coor x-coor y-coor','expression',5,'p_expression_line','parser_dl.py',72),
-  ('expression -> CIRCLE x-coor y-coor radius color','expression',5,'p_expression_circle','parser_dl.py',87),
-  ('expression -> CIRCLE x-coor y-coor radius','expression',4,'p_expression_circle','parser_dl.py',88),
-  ('expression -> OVAL x-coor y-coor x-coor y-coor color','expression',6,'p_expression_oval','parser_dl.py',108),
-  ('expression -> OVAL x-coor y-coor x-coor y-coor','expression',5,'p_expression_oval','parser_dl.py',109),
-  ('expression -> RECT x-coor y-coor x-coor y-coor color','expression',6,'p_expression_rectangle','parser_dl.py',127),
-  ('expression -> RECT x-coor y-coor x-coor y-coor','expression',5,'p_expression_rectangle','parser_dl.py',128),
-  ('expression -> TEXT x-coor y-coor WRD','expression',4,'p_expression_text','parser_dl.py',140),
-  ('expression -> MOVE speed direction','expression',3,'p_expression_move','parser_dl.py',145),
-  ('expression -> ROTATE LEFT degrees','expression',3,'p_expression_rotate','parser_dl.py',175),
-  ('expression -> ROTATE RIGHT degrees','expression',3,'p_expression_rotate','parser_dl.py',176),
-  ('expression -> BIGGER','expression',1,'p_expression_scale','parser_dl.py',198),
-  ('expression -> SMALLER','expression',1,'p_expression_scale','parser_dl.py',199),
-  ('expression -> BIGGER SHOW','expression',2,'p_expression_scale','parser_dl.py',200),
-  ('expression -> SMALLER SHOW','expression',2,'p_expression_scale','parser_dl.py',201),
+  ('expression -> NUMBER','expression',1,'p_expression_number','parser_dl.py',28),
+  ('color -> QUOT WRD QUOT','color',3,'p_expression_color','parser_dl.py',32),
+  ('x-coor -> NUMBER','x-coor',1,'p_expression_xcoor','parser_dl.py',36),
+  ('y-coor -> NUMBER','y-coor',1,'p_expression_ycoor','parser_dl.py',40),
+  ('radius -> NUMBER','radius',1,'p_expression_radius','parser_dl.py',44),
+  ('degrees -> NUMBER','degrees',1,'p_expression_degrees','parser_dl.py',48),
+  ('speed -> WRD','speed',1,'p_expression_speed','parser_dl.py',52),
+  ('direction -> WRD','direction',1,'p_expression_direction','parser_dl.py',56),
+  ('expression -> CANVAS expression expression color','expression',4,'p_expression_canvas','parser_dl.py',60),
+  ('expression -> CANVAS expression expression','expression',3,'p_expression_canvas','parser_dl.py',61),
+  ('expression -> LINE x-coor y-coor x-coor y-coor color','expression',6,'p_expression_line','parser_dl.py',72),
+  ('expression -> LINE x-coor y-coor x-coor y-coor','expression',5,'p_expression_line','parser_dl.py',73),
+  ('expression -> CIRCLE x-coor y-coor radius color','expression',5,'p_expression_circle','parser_dl.py',88),
+  ('expression -> CIRCLE x-coor y-coor radius','expression',4,'p_expression_circle','parser_dl.py',89),
+  ('expression -> OVAL x-coor y-coor x-coor y-coor color','expression',6,'p_expression_oval','parser_dl.py',109),
+  ('expression -> OVAL x-coor y-coor x-coor y-coor','expression',5,'p_expression_oval','parser_dl.py',110),
+  ('expression -> RECT x-coor y-coor x-coor y-coor color','expression',6,'p_expression_rectangle','parser_dl.py',128),
+  ('expression -> RECT x-coor y-coor x-coor y-coor','expression',5,'p_expression_rectangle','parser_dl.py',129),
+  ('expression -> TEXT x-coor y-coor WRD','expression',4,'p_expression_text','parser_dl.py',141),
+  ('expression -> MOVE speed direction','expression',3,'p_expression_move','parser_dl.py',146),
+  ('expression -> ROTATE LEFT degrees','expression',3,'p_expression_rotate','parser_dl.py',176),
+  ('expression -> ROTATE RIGHT degrees','expression',3,'p_expression_rotate','parser_dl.py',177),
+  ('expression -> BIGGER','expression',1,'p_expression_scale','parser_dl.py',202),
+  ('expression -> SMALLER','expression',1,'p_expression_scale','parser_dl.py',203),
+  ('expression -> BIGGER SHOW','expression',2,'p_expression_scale','parser_dl.py',204),
+  ('expression -> SMALLER SHOW','expression',2,'p_expression_scale','parser_dl.py',205),
+  ('expression -> BOUNCEBALL','expression',1,'p_expression_bounceball','parser_dl.py',250),
 ]
