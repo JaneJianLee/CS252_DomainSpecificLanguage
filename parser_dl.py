@@ -253,6 +253,51 @@ def redrawShapeTransform():
     prevScaleFactor = 1
     scaleFactor = 1
 
+def p_expression_mirror(p):
+    '''expression : MIRRORX
+                  | MIRRORY'''
+    global width, height, args_last
+    cx = width/2
+    cy = height/2
+    sColor = args_last[-1]
+    points = args_last[:-1]
+    if p[1] == "mirrory":
+        if flag_shape_last == "rectangle":
+            if points[0] <= cx and points[2] >= cx:
+                print("Overlaps! No flipping over y-axis.")
+            else:
+                dist1 = abs(cx - points[0])
+                dist2 = abs(cx - points[2])
+                if points[0] < cx:
+                    x1new = cx + dist1
+                    x2new = cx + dist2
+                else:
+                    x1new = cx - dist1
+                    x2new = cx - dist2
+                args_last[0] = x1new
+                args_last[2] = x2new
+                redrawShapeTransform()
+
+    if p[1] == "mirrorx":
+        if flag_shape_last == "rectangle":
+            if points[1] <= cy and points[3] >= cy:
+                print("Overlaps! No flipping over y-axis.")
+            else:
+                dist1 = abs(cy - points[1])
+                dist2 = abs(cy - points[3])
+                if points[1] < cy:
+                    y1new = cy + dist1
+                    y2new = cy + dist2
+                else:
+                    y1new = cy - dist1
+                    y2new = cy - dist2
+                args_last[1] = y1new
+                args_last[3] = y2new
+                redrawShapeTransform()
+
+
+
+
 def p_expression_bounceball(p):
     'expression : BOUNCEBALL'
     ball = w.create_oval(5,5,60,60,fill="blue")

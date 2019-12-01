@@ -8,6 +8,10 @@ rectangle(120,120,200,200,"green")
 makeBigger
 turn left 50
 
+rectangle(25,25,50,50, "cyan")
+mirrory
+mirrorx
+
 text(300,300,judy)
 
 circle(100,200,50)

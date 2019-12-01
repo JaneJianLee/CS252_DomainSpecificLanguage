@@ -29,16 +29,20 @@ Rule 23    expression -> BIGGER
 Rule 24    expression -> SMALLER
 Rule 25    expression -> BIGGER SHOW
 Rule 26    expression -> SMALLER SHOW
-Rule 27    expression -> BOUNCEBALL
+Rule 27    expression -> MIRRORX
+Rule 28    expression -> MIRRORY
+Rule 29    expression -> BOUNCEBALL
 
 Terminals, with rules where they appear
 
 BIGGER               : 23 25
-BOUNCEBALL           : 27
+BOUNCEBALL           : 29
 CANVAS               : 9 10
 CIRCLE               : 13 14
 LEFT                 : 21
 LINE                 : 11 12
+MIRRORX              : 27
+MIRRORY              : 28
 MOVE                 : 20
 NUMBER               : 1 3 4 5 6
 OVAL                 : 15 16
@@ -87,7 +91,9 @@ state 0
     (24) expression -> . SMALLER
     (25) expression -> . BIGGER SHOW
     (26) expression -> . SMALLER SHOW
-    (27) expression -> . BOUNCEBALL
+    (27) expression -> . MIRRORX
+    (28) expression -> . MIRRORY
+    (29) expression -> . BOUNCEBALL
 
     NUMBER          shift and go to state 2
     CANVAS          shift and go to state 3
@@ -100,7 +106,9 @@ state 0
     ROTATE          shift and go to state 10
     BIGGER          shift and go to state 11
     SMALLER         shift and go to state 12
-    BOUNCEBALL      shift and go to state 13
+    MIRRORX         shift and go to state 13
+    MIRRORY         shift and go to state 14
+    BOUNCEBALL      shift and go to state 15
 
     expression                     shift and go to state 1
 
@@ -126,6 +134,8 @@ state 2
     ROTATE          reduce using rule 1 (expression -> NUMBER .)
     BIGGER          reduce using rule 1 (expression -> NUMBER .)
     SMALLER         reduce using rule 1 (expression -> NUMBER .)
+    MIRRORX         reduce using rule 1 (expression -> NUMBER .)
+    MIRRORY         reduce using rule 1 (expression -> NUMBER .)
     BOUNCEBALL      reduce using rule 1 (expression -> NUMBER .)
     QUOT            reduce using rule 1 (expression -> NUMBER .)
 
@@ -153,7 +163,9 @@ state 3
     (24) expression -> . SMALLER
     (25) expression -> . BIGGER SHOW
     (26) expression -> . SMALLER SHOW
-    (27) expression -> . BOUNCEBALL
+    (27) expression -> . MIRRORX
+    (28) expression -> . MIRRORY
+    (29) expression -> . BOUNCEBALL
 
     NUMBER          shift and go to state 2
     CANVAS          shift and go to state 3
@@ -166,9 +178,11 @@ state 3
     ROTATE          shift and go to state 10
     BIGGER          shift and go to state 11
     SMALLER         shift and go to state 12
-    BOUNCEBALL      shift and go to state 13
+    MIRRORX         shift and go to state 13
+    MIRRORY         shift and go to state 14
+    BOUNCEBALL      shift and go to state 15
 
-    expression                     shift and go to state 14
+    expression                     shift and go to state 16
 
 state 4
 
@@ -176,9 +190,9 @@ state 4
     (12) expression -> LINE . x-coor y-coor x-coor y-coor
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 15
+    x-coor                         shift and go to state 17
 
 state 5
 
@@ -186,9 +200,9 @@ state 5
     (14) expression -> CIRCLE . x-coor y-coor radius
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 17
+    x-coor                         shift and go to state 19
 
 state 6
 
@@ -196,9 +210,9 @@ state 6
     (16) expression -> OVAL . x-coor y-coor x-coor y-coor
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 18
+    x-coor                         shift and go to state 20
 
 state 7
 
@@ -206,35 +220,35 @@ state 7
     (18) expression -> RECT . x-coor y-coor x-coor y-coor
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 19
+    x-coor                         shift and go to state 21
 
 state 8
 
     (19) expression -> TEXT . x-coor y-coor WRD
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 20
+    x-coor                         shift and go to state 22
 
 state 9
 
     (20) expression -> MOVE . speed direction
     (7) speed -> . WRD
 
-    WRD             shift and go to state 22
+    WRD             shift and go to state 24
 
-    speed                          shift and go to state 21
+    speed                          shift and go to state 23
 
 state 10
 
     (21) expression -> ROTATE . LEFT degrees
     (22) expression -> ROTATE . RIGHT degrees
 
-    LEFT            shift and go to state 23
-    RIGHT           shift and go to state 24
+    LEFT            shift and go to state 25
+    RIGHT           shift and go to state 26
 
 
 state 11
@@ -254,9 +268,11 @@ state 11
     ROTATE          reduce using rule 23 (expression -> BIGGER .)
     BIGGER          reduce using rule 23 (expression -> BIGGER .)
     SMALLER         reduce using rule 23 (expression -> BIGGER .)
+    MIRRORX         reduce using rule 23 (expression -> BIGGER .)
+    MIRRORY         reduce using rule 23 (expression -> BIGGER .)
     BOUNCEBALL      reduce using rule 23 (expression -> BIGGER .)
     QUOT            reduce using rule 23 (expression -> BIGGER .)
-    SHOW            shift and go to state 25
+    SHOW            shift and go to state 27
 
 
 state 12
@@ -276,32 +292,80 @@ state 12
     ROTATE          reduce using rule 24 (expression -> SMALLER .)
     BIGGER          reduce using rule 24 (expression -> SMALLER .)
     SMALLER         reduce using rule 24 (expression -> SMALLER .)
+    MIRRORX         reduce using rule 24 (expression -> SMALLER .)
+    MIRRORY         reduce using rule 24 (expression -> SMALLER .)
     BOUNCEBALL      reduce using rule 24 (expression -> SMALLER .)
     QUOT            reduce using rule 24 (expression -> SMALLER .)
-    SHOW            shift and go to state 26
+    SHOW            shift and go to state 28
 
 
 state 13
 
-    (27) expression -> BOUNCEBALL .
+    (27) expression -> MIRRORX .
 
-    $end            reduce using rule 27 (expression -> BOUNCEBALL .)
-    NUMBER          reduce using rule 27 (expression -> BOUNCEBALL .)
-    CANVAS          reduce using rule 27 (expression -> BOUNCEBALL .)
-    LINE            reduce using rule 27 (expression -> BOUNCEBALL .)
-    CIRCLE          reduce using rule 27 (expression -> BOUNCEBALL .)
-    OVAL            reduce using rule 27 (expression -> BOUNCEBALL .)
-    RECT            reduce using rule 27 (expression -> BOUNCEBALL .)
-    TEXT            reduce using rule 27 (expression -> BOUNCEBALL .)
-    MOVE            reduce using rule 27 (expression -> BOUNCEBALL .)
-    ROTATE          reduce using rule 27 (expression -> BOUNCEBALL .)
-    BIGGER          reduce using rule 27 (expression -> BOUNCEBALL .)
-    SMALLER         reduce using rule 27 (expression -> BOUNCEBALL .)
-    BOUNCEBALL      reduce using rule 27 (expression -> BOUNCEBALL .)
-    QUOT            reduce using rule 27 (expression -> BOUNCEBALL .)
+    $end            reduce using rule 27 (expression -> MIRRORX .)
+    NUMBER          reduce using rule 27 (expression -> MIRRORX .)
+    CANVAS          reduce using rule 27 (expression -> MIRRORX .)
+    LINE            reduce using rule 27 (expression -> MIRRORX .)
+    CIRCLE          reduce using rule 27 (expression -> MIRRORX .)
+    OVAL            reduce using rule 27 (expression -> MIRRORX .)
+    RECT            reduce using rule 27 (expression -> MIRRORX .)
+    TEXT            reduce using rule 27 (expression -> MIRRORX .)
+    MOVE            reduce using rule 27 (expression -> MIRRORX .)
+    ROTATE          reduce using rule 27 (expression -> MIRRORX .)
+    BIGGER          reduce using rule 27 (expression -> MIRRORX .)
+    SMALLER         reduce using rule 27 (expression -> MIRRORX .)
+    MIRRORX         reduce using rule 27 (expression -> MIRRORX .)
+    MIRRORY         reduce using rule 27 (expression -> MIRRORX .)
+    BOUNCEBALL      reduce using rule 27 (expression -> MIRRORX .)
+    QUOT            reduce using rule 27 (expression -> MIRRORX .)
 
 
 state 14
+
+    (28) expression -> MIRRORY .
+
+    $end            reduce using rule 28 (expression -> MIRRORY .)
+    NUMBER          reduce using rule 28 (expression -> MIRRORY .)
+    CANVAS          reduce using rule 28 (expression -> MIRRORY .)
+    LINE            reduce using rule 28 (expression -> MIRRORY .)
+    CIRCLE          reduce using rule 28 (expression -> MIRRORY .)
+    OVAL            reduce using rule 28 (expression -> MIRRORY .)
+    RECT            reduce using rule 28 (expression -> MIRRORY .)
+    TEXT            reduce using rule 28 (expression -> MIRRORY .)
+    MOVE            reduce using rule 28 (expression -> MIRRORY .)
+    ROTATE          reduce using rule 28 (expression -> MIRRORY .)
+    BIGGER          reduce using rule 28 (expression -> MIRRORY .)
+    SMALLER         reduce using rule 28 (expression -> MIRRORY .)
+    MIRRORX         reduce using rule 28 (expression -> MIRRORY .)
+    MIRRORY         reduce using rule 28 (expression -> MIRRORY .)
+    BOUNCEBALL      reduce using rule 28 (expression -> MIRRORY .)
+    QUOT            reduce using rule 28 (expression -> MIRRORY .)
+
+
+state 15
+
+    (29) expression -> BOUNCEBALL .
+
+    $end            reduce using rule 29 (expression -> BOUNCEBALL .)
+    NUMBER          reduce using rule 29 (expression -> BOUNCEBALL .)
+    CANVAS          reduce using rule 29 (expression -> BOUNCEBALL .)
+    LINE            reduce using rule 29 (expression -> BOUNCEBALL .)
+    CIRCLE          reduce using rule 29 (expression -> BOUNCEBALL .)
+    OVAL            reduce using rule 29 (expression -> BOUNCEBALL .)
+    RECT            reduce using rule 29 (expression -> BOUNCEBALL .)
+    TEXT            reduce using rule 29 (expression -> BOUNCEBALL .)
+    MOVE            reduce using rule 29 (expression -> BOUNCEBALL .)
+    ROTATE          reduce using rule 29 (expression -> BOUNCEBALL .)
+    BIGGER          reduce using rule 29 (expression -> BOUNCEBALL .)
+    SMALLER         reduce using rule 29 (expression -> BOUNCEBALL .)
+    MIRRORX         reduce using rule 29 (expression -> BOUNCEBALL .)
+    MIRRORY         reduce using rule 29 (expression -> BOUNCEBALL .)
+    BOUNCEBALL      reduce using rule 29 (expression -> BOUNCEBALL .)
+    QUOT            reduce using rule 29 (expression -> BOUNCEBALL .)
+
+
+state 16
 
     (9) expression -> CANVAS expression . expression color
     (10) expression -> CANVAS expression . expression
@@ -324,7 +388,9 @@ state 14
     (24) expression -> . SMALLER
     (25) expression -> . BIGGER SHOW
     (26) expression -> . SMALLER SHOW
-    (27) expression -> . BOUNCEBALL
+    (27) expression -> . MIRRORX
+    (28) expression -> . MIRRORY
+    (29) expression -> . BOUNCEBALL
 
     NUMBER          shift and go to state 2
     CANVAS          shift and go to state 3
@@ -337,101 +403,103 @@ state 14
     ROTATE          shift and go to state 10
     BIGGER          shift and go to state 11
     SMALLER         shift and go to state 12
-    BOUNCEBALL      shift and go to state 13
+    MIRRORX         shift and go to state 13
+    MIRRORY         shift and go to state 14
+    BOUNCEBALL      shift and go to state 15
 
-    expression                     shift and go to state 27
+    expression                     shift and go to state 29
 
-state 15
+state 17
 
     (11) expression -> LINE x-coor . y-coor x-coor y-coor color
     (12) expression -> LINE x-coor . y-coor x-coor y-coor
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 29
+    NUMBER          shift and go to state 31
 
-    y-coor                         shift and go to state 28
+    y-coor                         shift and go to state 30
 
-state 16
+state 18
 
     (3) x-coor -> NUMBER .
 
     NUMBER          reduce using rule 3 (x-coor -> NUMBER .)
 
 
-state 17
+state 19
 
     (13) expression -> CIRCLE x-coor . y-coor radius color
     (14) expression -> CIRCLE x-coor . y-coor radius
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 29
-
-    y-coor                         shift and go to state 30
-
-state 18
-
-    (15) expression -> OVAL x-coor . y-coor x-coor y-coor color
-    (16) expression -> OVAL x-coor . y-coor x-coor y-coor
-    (4) y-coor -> . NUMBER
-
-    NUMBER          shift and go to state 29
-
-    y-coor                         shift and go to state 31
-
-state 19
-
-    (17) expression -> RECT x-coor . y-coor x-coor y-coor color
-    (18) expression -> RECT x-coor . y-coor x-coor y-coor
-    (4) y-coor -> . NUMBER
-
-    NUMBER          shift and go to state 29
+    NUMBER          shift and go to state 31
 
     y-coor                         shift and go to state 32
 
 state 20
 
-    (19) expression -> TEXT x-coor . y-coor WRD
+    (15) expression -> OVAL x-coor . y-coor x-coor y-coor color
+    (16) expression -> OVAL x-coor . y-coor x-coor y-coor
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 29
+    NUMBER          shift and go to state 31
 
     y-coor                         shift and go to state 33
 
 state 21
 
+    (17) expression -> RECT x-coor . y-coor x-coor y-coor color
+    (18) expression -> RECT x-coor . y-coor x-coor y-coor
+    (4) y-coor -> . NUMBER
+
+    NUMBER          shift and go to state 31
+
+    y-coor                         shift and go to state 34
+
+state 22
+
+    (19) expression -> TEXT x-coor . y-coor WRD
+    (4) y-coor -> . NUMBER
+
+    NUMBER          shift and go to state 31
+
+    y-coor                         shift and go to state 35
+
+state 23
+
     (20) expression -> MOVE speed . direction
     (8) direction -> . WRD
 
-    WRD             shift and go to state 35
+    WRD             shift and go to state 37
 
-    direction                      shift and go to state 34
+    direction                      shift and go to state 36
 
-state 22
+state 24
 
     (7) speed -> WRD .
 
     WRD             reduce using rule 7 (speed -> WRD .)
 
 
-state 23
+state 25
 
     (21) expression -> ROTATE LEFT . degrees
     (6) degrees -> . NUMBER
 
-    NUMBER          shift and go to state 37
+    NUMBER          shift and go to state 39
 
-    degrees                        shift and go to state 36
+    degrees                        shift and go to state 38
 
-state 24
+state 26
 
     (22) expression -> ROTATE RIGHT . degrees
     (6) degrees -> . NUMBER
 
-    NUMBER          shift and go to state 37
+    NUMBER          shift and go to state 39
 
-    degrees                        shift and go to state 38
+    degrees                        shift and go to state 40
 
-state 25
+state 27
 
     (25) expression -> BIGGER SHOW .
 
@@ -447,11 +515,13 @@ state 25
     ROTATE          reduce using rule 25 (expression -> BIGGER SHOW .)
     BIGGER          reduce using rule 25 (expression -> BIGGER SHOW .)
     SMALLER         reduce using rule 25 (expression -> BIGGER SHOW .)
+    MIRRORX         reduce using rule 25 (expression -> BIGGER SHOW .)
+    MIRRORY         reduce using rule 25 (expression -> BIGGER SHOW .)
     BOUNCEBALL      reduce using rule 25 (expression -> BIGGER SHOW .)
     QUOT            reduce using rule 25 (expression -> BIGGER SHOW .)
 
 
-state 26
+state 28
 
     (26) expression -> SMALLER SHOW .
 
@@ -467,11 +537,13 @@ state 26
     ROTATE          reduce using rule 26 (expression -> SMALLER SHOW .)
     BIGGER          reduce using rule 26 (expression -> SMALLER SHOW .)
     SMALLER         reduce using rule 26 (expression -> SMALLER SHOW .)
+    MIRRORX         reduce using rule 26 (expression -> SMALLER SHOW .)
+    MIRRORY         reduce using rule 26 (expression -> SMALLER SHOW .)
     BOUNCEBALL      reduce using rule 26 (expression -> SMALLER SHOW .)
     QUOT            reduce using rule 26 (expression -> SMALLER SHOW .)
 
 
-state 27
+state 29
 
     (9) expression -> CANVAS expression expression . color
     (10) expression -> CANVAS expression expression .
@@ -490,24 +562,26 @@ state 27
     ROTATE          reduce using rule 10 (expression -> CANVAS expression expression .)
     BIGGER          reduce using rule 10 (expression -> CANVAS expression expression .)
     SMALLER         reduce using rule 10 (expression -> CANVAS expression expression .)
+    MIRRORX         reduce using rule 10 (expression -> CANVAS expression expression .)
+    MIRRORY         reduce using rule 10 (expression -> CANVAS expression expression .)
     BOUNCEBALL      reduce using rule 10 (expression -> CANVAS expression expression .)
-    QUOT            shift and go to state 40
+    QUOT            shift and go to state 42
 
   ! QUOT            [ reduce using rule 10 (expression -> CANVAS expression expression .) ]
 
-    color                          shift and go to state 39
+    color                          shift and go to state 41
 
-state 28
+state 30
 
     (11) expression -> LINE x-coor y-coor . x-coor y-coor color
     (12) expression -> LINE x-coor y-coor . x-coor y-coor
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 41
+    x-coor                         shift and go to state 43
 
-state 29
+state 31
 
     (4) y-coor -> NUMBER .
 
@@ -525,47 +599,49 @@ state 29
     ROTATE          reduce using rule 4 (y-coor -> NUMBER .)
     BIGGER          reduce using rule 4 (y-coor -> NUMBER .)
     SMALLER         reduce using rule 4 (y-coor -> NUMBER .)
+    MIRRORX         reduce using rule 4 (y-coor -> NUMBER .)
+    MIRRORY         reduce using rule 4 (y-coor -> NUMBER .)
     BOUNCEBALL      reduce using rule 4 (y-coor -> NUMBER .)
 
 
-state 30
+state 32
 
     (13) expression -> CIRCLE x-coor y-coor . radius color
     (14) expression -> CIRCLE x-coor y-coor . radius
     (5) radius -> . NUMBER
 
-    NUMBER          shift and go to state 43
+    NUMBER          shift and go to state 45
 
-    radius                         shift and go to state 42
+    radius                         shift and go to state 44
 
-state 31
+state 33
 
     (15) expression -> OVAL x-coor y-coor . x-coor y-coor color
     (16) expression -> OVAL x-coor y-coor . x-coor y-coor
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 44
+    x-coor                         shift and go to state 46
 
-state 32
+state 34
 
     (17) expression -> RECT x-coor y-coor . x-coor y-coor color
     (18) expression -> RECT x-coor y-coor . x-coor y-coor
     (3) x-coor -> . NUMBER
 
-    NUMBER          shift and go to state 16
+    NUMBER          shift and go to state 18
 
-    x-coor                         shift and go to state 45
+    x-coor                         shift and go to state 47
 
-state 33
+state 35
 
     (19) expression -> TEXT x-coor y-coor . WRD
 
-    WRD             shift and go to state 46
+    WRD             shift and go to state 48
 
 
-state 34
+state 36
 
     (20) expression -> MOVE speed direction .
 
@@ -581,11 +657,13 @@ state 34
     ROTATE          reduce using rule 20 (expression -> MOVE speed direction .)
     BIGGER          reduce using rule 20 (expression -> MOVE speed direction .)
     SMALLER         reduce using rule 20 (expression -> MOVE speed direction .)
+    MIRRORX         reduce using rule 20 (expression -> MOVE speed direction .)
+    MIRRORY         reduce using rule 20 (expression -> MOVE speed direction .)
     BOUNCEBALL      reduce using rule 20 (expression -> MOVE speed direction .)
     QUOT            reduce using rule 20 (expression -> MOVE speed direction .)
 
 
-state 35
+state 37
 
     (8) direction -> WRD .
 
@@ -601,11 +679,13 @@ state 35
     ROTATE          reduce using rule 8 (direction -> WRD .)
     BIGGER          reduce using rule 8 (direction -> WRD .)
     SMALLER         reduce using rule 8 (direction -> WRD .)
+    MIRRORX         reduce using rule 8 (direction -> WRD .)
+    MIRRORY         reduce using rule 8 (direction -> WRD .)
     BOUNCEBALL      reduce using rule 8 (direction -> WRD .)
     QUOT            reduce using rule 8 (direction -> WRD .)
 
 
-state 36
+state 38
 
     (21) expression -> ROTATE LEFT degrees .
 
@@ -621,11 +701,13 @@ state 36
     ROTATE          reduce using rule 21 (expression -> ROTATE LEFT degrees .)
     BIGGER          reduce using rule 21 (expression -> ROTATE LEFT degrees .)
     SMALLER         reduce using rule 21 (expression -> ROTATE LEFT degrees .)
+    MIRRORX         reduce using rule 21 (expression -> ROTATE LEFT degrees .)
+    MIRRORY         reduce using rule 21 (expression -> ROTATE LEFT degrees .)
     BOUNCEBALL      reduce using rule 21 (expression -> ROTATE LEFT degrees .)
     QUOT            reduce using rule 21 (expression -> ROTATE LEFT degrees .)
 
 
-state 37
+state 39
 
     (6) degrees -> NUMBER .
 
@@ -641,11 +723,13 @@ state 37
     ROTATE          reduce using rule 6 (degrees -> NUMBER .)
     BIGGER          reduce using rule 6 (degrees -> NUMBER .)
     SMALLER         reduce using rule 6 (degrees -> NUMBER .)
+    MIRRORX         reduce using rule 6 (degrees -> NUMBER .)
+    MIRRORY         reduce using rule 6 (degrees -> NUMBER .)
     BOUNCEBALL      reduce using rule 6 (degrees -> NUMBER .)
     QUOT            reduce using rule 6 (degrees -> NUMBER .)
 
 
-state 38
+state 40
 
     (22) expression -> ROTATE RIGHT degrees .
 
@@ -661,11 +745,13 @@ state 38
     ROTATE          reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
     BIGGER          reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
     SMALLER         reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
+    MIRRORX         reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
+    MIRRORY         reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
     BOUNCEBALL      reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
     QUOT            reduce using rule 22 (expression -> ROTATE RIGHT degrees .)
 
 
-state 39
+state 41
 
     (9) expression -> CANVAS expression expression color .
 
@@ -681,28 +767,30 @@ state 39
     ROTATE          reduce using rule 9 (expression -> CANVAS expression expression color .)
     BIGGER          reduce using rule 9 (expression -> CANVAS expression expression color .)
     SMALLER         reduce using rule 9 (expression -> CANVAS expression expression color .)
+    MIRRORX         reduce using rule 9 (expression -> CANVAS expression expression color .)
+    MIRRORY         reduce using rule 9 (expression -> CANVAS expression expression color .)
     BOUNCEBALL      reduce using rule 9 (expression -> CANVAS expression expression color .)
     QUOT            reduce using rule 9 (expression -> CANVAS expression expression color .)
 
 
-state 40
+state 42
 
     (2) color -> QUOT . WRD QUOT
 
-    WRD             shift and go to state 47
+    WRD             shift and go to state 49
 
 
-state 41
+state 43
 
     (11) expression -> LINE x-coor y-coor x-coor . y-coor color
     (12) expression -> LINE x-coor y-coor x-coor . y-coor
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 29
+    NUMBER          shift and go to state 31
 
-    y-coor                         shift and go to state 48
+    y-coor                         shift and go to state 50
 
-state 42
+state 44
 
     (13) expression -> CIRCLE x-coor y-coor radius . color
     (14) expression -> CIRCLE x-coor y-coor radius .
@@ -721,14 +809,16 @@ state 42
     ROTATE          reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .)
     BIGGER          reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .)
     SMALLER         reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .)
+    MIRRORX         reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .)
+    MIRRORY         reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .)
     BOUNCEBALL      reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .)
-    QUOT            shift and go to state 40
+    QUOT            shift and go to state 42
 
   ! QUOT            [ reduce using rule 14 (expression -> CIRCLE x-coor y-coor radius .) ]
 
-    color                          shift and go to state 49
+    color                          shift and go to state 51
 
-state 43
+state 45
 
     (5) radius -> NUMBER .
 
@@ -745,30 +835,32 @@ state 43
     ROTATE          reduce using rule 5 (radius -> NUMBER .)
     BIGGER          reduce using rule 5 (radius -> NUMBER .)
     SMALLER         reduce using rule 5 (radius -> NUMBER .)
+    MIRRORX         reduce using rule 5 (radius -> NUMBER .)
+    MIRRORY         reduce using rule 5 (radius -> NUMBER .)
     BOUNCEBALL      reduce using rule 5 (radius -> NUMBER .)
 
 
-state 44
+state 46
 
     (15) expression -> OVAL x-coor y-coor x-coor . y-coor color
     (16) expression -> OVAL x-coor y-coor x-coor . y-coor
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 29
+    NUMBER          shift and go to state 31
 
-    y-coor                         shift and go to state 50
+    y-coor                         shift and go to state 52
 
-state 45
+state 47
 
     (17) expression -> RECT x-coor y-coor x-coor . y-coor color
     (18) expression -> RECT x-coor y-coor x-coor . y-coor
     (4) y-coor -> . NUMBER
 
-    NUMBER          shift and go to state 29
+    NUMBER          shift and go to state 31
 
-    y-coor                         shift and go to state 51
+    y-coor                         shift and go to state 53
 
-state 46
+state 48
 
     (19) expression -> TEXT x-coor y-coor WRD .
 
@@ -784,18 +876,20 @@ state 46
     ROTATE          reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
     BIGGER          reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
     SMALLER         reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
+    MIRRORX         reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
+    MIRRORY         reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
     BOUNCEBALL      reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
     QUOT            reduce using rule 19 (expression -> TEXT x-coor y-coor WRD .)
 
 
-state 47
+state 49
 
     (2) color -> QUOT WRD . QUOT
 
-    QUOT            shift and go to state 52
+    QUOT            shift and go to state 54
 
 
-state 48
+state 50
 
     (11) expression -> LINE x-coor y-coor x-coor y-coor . color
     (12) expression -> LINE x-coor y-coor x-coor y-coor .
@@ -814,14 +908,16 @@ state 48
     ROTATE          reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .)
     BIGGER          reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .)
     SMALLER         reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    MIRRORX         reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .)
+    MIRRORY         reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .)
     BOUNCEBALL      reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .)
-    QUOT            shift and go to state 40
+    QUOT            shift and go to state 42
 
   ! QUOT            [ reduce using rule 12 (expression -> LINE x-coor y-coor x-coor y-coor .) ]
 
-    color                          shift and go to state 53
+    color                          shift and go to state 55
 
-state 49
+state 51
 
     (13) expression -> CIRCLE x-coor y-coor radius color .
 
@@ -837,11 +933,13 @@ state 49
     ROTATE          reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
     BIGGER          reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
     SMALLER         reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
+    MIRRORX         reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
+    MIRRORY         reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
     BOUNCEBALL      reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
     QUOT            reduce using rule 13 (expression -> CIRCLE x-coor y-coor radius color .)
 
 
-state 50
+state 52
 
     (15) expression -> OVAL x-coor y-coor x-coor y-coor . color
     (16) expression -> OVAL x-coor y-coor x-coor y-coor .
@@ -860,14 +958,16 @@ state 50
     ROTATE          reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .)
     BIGGER          reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .)
     SMALLER         reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    MIRRORX         reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .)
+    MIRRORY         reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .)
     BOUNCEBALL      reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .)
-    QUOT            shift and go to state 40
+    QUOT            shift and go to state 42
 
   ! QUOT            [ reduce using rule 16 (expression -> OVAL x-coor y-coor x-coor y-coor .) ]
 
-    color                          shift and go to state 54
+    color                          shift and go to state 56
 
-state 51
+state 53
 
     (17) expression -> RECT x-coor y-coor x-coor y-coor . color
     (18) expression -> RECT x-coor y-coor x-coor y-coor .
@@ -886,14 +986,16 @@ state 51
     ROTATE          reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .)
     BIGGER          reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .)
     SMALLER         reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    MIRRORX         reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .)
+    MIRRORY         reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .)
     BOUNCEBALL      reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .)
-    QUOT            shift and go to state 40
+    QUOT            shift and go to state 42
 
   ! QUOT            [ reduce using rule 18 (expression -> RECT x-coor y-coor x-coor y-coor .) ]
 
-    color                          shift and go to state 55
+    color                          shift and go to state 57
 
-state 52
+state 54
 
     (2) color -> QUOT WRD QUOT .
 
@@ -909,11 +1011,13 @@ state 52
     ROTATE          reduce using rule 2 (color -> QUOT WRD QUOT .)
     BIGGER          reduce using rule 2 (color -> QUOT WRD QUOT .)
     SMALLER         reduce using rule 2 (color -> QUOT WRD QUOT .)
+    MIRRORX         reduce using rule 2 (color -> QUOT WRD QUOT .)
+    MIRRORY         reduce using rule 2 (color -> QUOT WRD QUOT .)
     BOUNCEBALL      reduce using rule 2 (color -> QUOT WRD QUOT .)
     QUOT            reduce using rule 2 (color -> QUOT WRD QUOT .)
 
 
-state 53
+state 55
 
     (11) expression -> LINE x-coor y-coor x-coor y-coor color .
 
@@ -929,11 +1033,13 @@ state 53
     ROTATE          reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
     BIGGER          reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
     SMALLER         reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    MIRRORX         reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
+    MIRRORY         reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
     BOUNCEBALL      reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
     QUOT            reduce using rule 11 (expression -> LINE x-coor y-coor x-coor y-coor color .)
 
 
-state 54
+state 56
 
     (15) expression -> OVAL x-coor y-coor x-coor y-coor color .
 
@@ -949,11 +1055,13 @@ state 54
     ROTATE          reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
     BIGGER          reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
     SMALLER         reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    MIRRORX         reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
+    MIRRORY         reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
     BOUNCEBALL      reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
     QUOT            reduce using rule 15 (expression -> OVAL x-coor y-coor x-coor y-coor color .)
 
 
-state 55
+state 57
 
     (17) expression -> RECT x-coor y-coor x-coor y-coor color .
 
@@ -969,14 +1077,16 @@ state 55
     ROTATE          reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
     BIGGER          reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
     SMALLER         reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    MIRRORX         reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
+    MIRRORY         reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
     BOUNCEBALL      reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
     QUOT            reduce using rule 17 (expression -> RECT x-coor y-coor x-coor y-coor color .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for QUOT in state 27 resolved as shift
-WARNING: shift/reduce conflict for QUOT in state 42 resolved as shift
-WARNING: shift/reduce conflict for QUOT in state 48 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 29 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 44 resolved as shift
 WARNING: shift/reduce conflict for QUOT in state 50 resolved as shift
-WARNING: shift/reduce conflict for QUOT in state 51 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 52 resolved as shift
+WARNING: shift/reduce conflict for QUOT in state 53 resolved as shift

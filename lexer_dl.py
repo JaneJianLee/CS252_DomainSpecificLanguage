@@ -16,7 +16,9 @@ tokens = ('CANVAS',
          'ROTATE',
          'LEFT',
          'RIGHT',
-         'BOUNCEBALL'
+         'BOUNCEBALL',
+         'MIRRORX',
+         'MIRRORY'
          )
 
 def t_CANVAS(t):
@@ -62,6 +64,14 @@ def t_LEFT(t):
 
 def t_RIGHT(t):
     r'right'
+    return t
+
+def t_MIRRORX(t):
+    r'mirrorx'
+    return t
+
+def t_MIRRORY(t):
+    r'mirrory'
     return t
 
 def t_SHOW(t):
