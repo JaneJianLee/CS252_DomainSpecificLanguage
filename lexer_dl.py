@@ -91,7 +91,7 @@ def t_TEXT(t):
     return t
 
 def t_WRD(t):
-    r'\w+'
+    r'[\w\d.!? ]+'
     return t
 
 def t_QUOT(t):

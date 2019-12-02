@@ -95,10 +95,10 @@ def p_expression_circle(p):
     y1=p[3]+p[4]
 
     if len(p) == 5: #default
-        last_obj = w.create_oval(x0, x1, y0, y1, fill="black", outline="black", width=4)
+        last_obj = w.create_oval(x0, x1, y0, y1, fill="black", outline="black", width=2)
         args_last = [x0, x1, y0, y1, "black"]
     else:
-        last_obj = w.create_oval(x0, x1, y0, y1, fill=p[5], outline="black", width=4)
+        last_obj = w.create_oval(x0, x1, y0, y1, fill=p[5], outline="black", width=2)
         args_last = [x0, x1, y0, y1, p[5]]
 
 
@@ -137,9 +137,9 @@ def p_expression_rectangle(p):
         args_last = [p[2], p[3], p[4], p[5], p[6]]
 
 def p_expression_text(p):    
-    'expression : TEXT x-coor y-coor WRD'
+    'expression : TEXT x-coor y-coor QUOT WRD QUOT'
     global last_obj
-    last_obj = w.create_text(p[2],p[3],fill="black",font="Times 20 italic bold",text=p[4])
+    last_obj = w.create_text(p[2],p[3],fill="black",font="Times 20 italic bold",text=p[5])
 
 def p_expression_move(p):
     'expression : MOVE speed direction'
@@ -220,7 +220,6 @@ def p_expression_scale(p):
         scaleFactor = 1.5
 
     #reset args_last
-
     redrawShapeTransform() #redraw shape here
 
 def redrawShapeTransform():
@@ -259,6 +258,7 @@ def p_expression_mirror(p):
     global width, height, args_last
     cx = width/2
     cy = height/2
+    print("Centerpoints of canvas: ", cx, cy)
     sColor = args_last[-1]
     points = args_last[:-1]
     if p[1] == "mirrory":
@@ -268,6 +268,7 @@ def p_expression_mirror(p):
                     print("Overlaps! No flipping over y-axis.")
                 else:
                     dist1 = abs(cx - points[0])
+                    print("MIRRORY DIST:", dist1)
                     if points[0] < cx:
                         x1new = cx + dist1
                     else:
@@ -297,6 +298,7 @@ def p_expression_mirror(p):
                     print("Overlaps! No flipping over x-axis.")
                 else:
                     dist1 = abs(cy - points[1])
+                    print("MIRRORX DIST:", dist1)
                     if points[1] < cy:
                         y1new = cy + dist1
                     else:
@@ -324,7 +326,7 @@ def p_expression_mirror(p):
 
 def p_expression_bounceball(p):
     'expression : BOUNCEBALL'
-    ball = w.create_oval(5,5,60,60,fill="blue")
+    ball = w.create_oval(5,5,60,60,fill="pink")
     x, y = 1, 3
     
     while True:
